@@ -224,7 +224,7 @@
               style: {
                 fontFamily: F.serif,
                 fontSize: '1.15rem',
-                color: 'rgba(245,240,232,0.9)',
+                color: props.page === 'home' ? 'rgba(245,240,232,0.9)' : 'rgba(245,240,232,0.5)',
                 textDecoration: 'none'
               }
             }, 'Joe Markland', e('span', { style: { color: C.teal } }, '.')),
@@ -386,6 +386,30 @@
           e(Divider),
 
           e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
+            e(FadeIn, null, e('h2', { style: h2s }, 'How it works')),
+            e(FadeIn, { delay: 0 },
+              e('p', { style: ps },
+                e('span', { style: { fontWeight: 600, color: C.ink } }, 'Take the GAP Profile. '),
+                'Free, no sign-up, about four minutes. You\'ll see which of four patterns is most likely getting in the way.'
+              )
+            ),
+            e(FadeIn, { delay: 0.05 },
+              e('p', { style: ps },
+                e('span', { style: { fontWeight: 600, color: C.ink } }, 'See what\'s blocking action. '),
+                'Not generic advice. A specific read on why the same move keeps stalling.'
+              )
+            ),
+            e(FadeIn, { delay: 0.05 },
+              e('p', { style: ps },
+                e('span', { style: { fontWeight: 600, color: C.ink } }, 'Do something useful with it. '),
+                'Use the result yourself, work through the matched workbook, or bring it into a focused session with me.'
+              )
+            )
+          ),
+
+          e(Divider),
+
+          e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
             e(FadeIn, null, e('h2', { style: h2s }, 'Why people get stuck')),
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps },
@@ -490,6 +514,20 @@
               e('p', { style: Object.assign({}, ps, strong) },
                 'I\'ve had the same conversation hundreds of times now. Someone sits down, capable, switched on — and says some version of: "I know what I should be doing. I just can\'t seem to do it."'
               )
+            ),
+            e(FadeIn, { delay: 0.05 },
+              e('img', {
+                src: 'D29A0595-88DA-4447-AF1C-E32353E143F0.jpeg',
+                alt: 'Joe Markland, career coach',
+                style: {
+                  width: '100%',
+                  borderRadius: 10,
+                  aspectRatio: '4 / 5',
+                  objectFit: 'cover',
+                  maxHeight: 420,
+                  margin: '28px 0'
+                }
+              })
             ),
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps },
@@ -769,6 +807,20 @@
               e('p', { style: ps },
                 'So I built the GAP Profile to measure what\'s actually getting in the way. Not personality, not strengths — the specific thing blocking action. It turns out there are four of them, and most people have one that\'s doing most of the damage.'
               )
+            ),
+            e(FadeIn, { delay: 0.12 },
+              e('img', {
+                src: 'D29A0595-88DA-4447-AF1C-E32353E143F0.jpeg',
+                alt: 'Joe Markland, career coach',
+                style: {
+                  width: '100%',
+                  borderRadius: 10,
+                  aspectRatio: '4 / 5',
+                  objectFit: 'cover',
+                  maxHeight: 420,
+                  margin: '28px 0'
+                }
+              })
             )
           ),
 
