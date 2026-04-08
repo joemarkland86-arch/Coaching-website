@@ -193,80 +193,51 @@
       }
 
       function Nav(props) {
-        return e('div', {
+        return e('nav', {
           style: {
-            position: 'sticky',
-            top: 0,
-            zIndex: 20,
-            backdropFilter: 'blur(14px)',
-            WebkitBackdropFilter: 'blur(14px)',
-            background: 'rgba(26,31,61,0.92)'
+            padding: '20px 24px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            maxWidth: 620,
+            margin: '0 auto'
           }
         },
-          e('nav', {
-            style: {
-              padding: '16px 24px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              maxWidth: 960,
-              margin: '0 auto'
-            }
-          },
-            e('a', {
-              href: '#/',
-              className: 'nav-link',
-              onClick: function (ev) {
-                ev.preventDefault();
-                props.setPage('home');
-                window.scrollTo(0, 0);
-              },
+          e('a', { href: '#', style: { textDecoration: 'none' } },
+            e('span', {
               style: {
                 fontFamily: F.serif,
                 fontSize: '1.15rem',
-                color: props.page === 'home' ? 'rgba(245,240,232,0.9)' : 'rgba(245,240,232,0.5)',
-                textDecoration: 'none'
+                color: C.ink,
+                display: 'block',
+                lineHeight: 1.2
               }
             }, 'Joe Markland', e('span', { style: { color: C.teal } }, '.')),
-            e('div', { style: { display: 'flex', gap: 20, alignItems: 'center' } },
-              e('a', {
-                href: '#/about',
-                className: 'nav-link',
-                onClick: function (ev) {
-                  ev.preventDefault();
-                  props.setPage('about');
-                  window.scrollTo(0, 0);
-                },
-                style: {
-                  fontFamily: F.sans,
-                  fontSize: '.82rem',
-                  fontWeight: 500,
-                  color: props.page === 'about' ? 'rgba(245,240,232,0.9)' : 'rgba(245,240,232,0.5)',
-                  textDecoration: 'none'
-                }
-              }, 'About'),
-              e('a', {
-                href: '#/parents',
-                className: 'nav-link',
-                onClick: function (ev) {
-                  ev.preventDefault();
-                  props.setPage('parents');
-                  window.scrollTo(0, 0);
-                },
-                style: {
-                  fontFamily: F.sans,
-                  fontSize: '.82rem',
-                  fontWeight: 500,
-                  color: props.page === 'parents' ? 'rgba(245,240,232,0.9)' : 'rgba(245,240,232,0.5)',
-                  textDecoration: 'none'
-                }
-              }, 'For parents'),
-              e('a', {
-                href: GAP,
-                className: 'btn-amber',
-                style: { padding: '8px 18px', fontSize: '.82rem', borderRadius: 5 }
-              }, 'Take the GAP Profile')
-            )
+            e('span', {
+              style: {
+                fontFamily: F.sans,
+                fontSize: '.68rem',
+                color: C.light,
+                letterSpacing: '.04em'
+              }
+            }, 'Career Coaching')
+          ),
+          e('div', { style: { display: 'flex', alignItems: 'center', gap: 20 } },
+            e('a', {
+              href: '#about',
+              style: {
+                fontFamily: F.sans,
+                fontSize: '.82rem',
+                color: C.light,
+                textDecoration: 'none',
+                fontWeight: 500
+              }
+            }, 'About'),
+            e('a', {
+              href: GAP,
+              className: 'btn-amber',
+              style: { padding: '8px 18px', fontSize: '.82rem', borderRadius: 5 }
+            }, 'Take the GAP Profile')
           )
         );
       }
@@ -508,72 +479,47 @@
 
           e(Divider),
 
-          e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
-            e(FadeIn, null, e('h2', { style: h2s }, 'How I work')),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: Object.assign({}, ps, strong) },
-                'I\'ve had the same conversation hundreds of times now. Someone sits down, capable, switched on — and says some version of: "I know what I should be doing. I just can\'t seem to do it."'
-              )
+          e('section', { id: 'about', style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
+            e('h2', { style: h2s }, 'Why I built this'),
+            e('p', { style: Object.assign({}, ps, { color: C.ink, fontWeight: 500 }) },
+              'I\'ve had the same conversation hundreds of times now. Someone sits down, capable, switched on — and says some version of: "I know what I should be doing. I just can\'t seem to do it."'
             ),
-            e(FadeIn, { delay: 0.05 },
-              e('img', {
-                src: 'D29A0595-88DA-4447-AF1C-E32353E143F0.jpeg',
-                alt: 'Joe Markland, career coach',
+            e('p', { style: ps },
+              'And they\'ve usually had advice. Sometimes quite good advice. The problem is, more advice isn\'t what they need. Something more specific is getting in the way — and until they can see what it actually is, nothing shifts.'
+            ),
+            e('p', { style: ps },
+              'I kept seeing the same four patterns come up. After a while, I stopped treating them as one-off problems and built something to measure them. That\'s the GAP Profile.'
+            ),
+            e('div', {
+              style: {
+                paddingLeft: 16,
+                borderLeft: '3px solid ' + C.teal,
+                marginTop: 8,
+                marginBottom: 24
+              }
+            },
+              e('p', {
                 style: {
-                  width: '100%',
-                  borderRadius: 10,
-                  aspectRatio: '4 / 5',
-                  objectFit: 'cover',
-                  maxHeight: 420,
-                  margin: '28px 0'
+                  fontFamily: F.serif,
+                  fontStyle: 'italic',
+                  fontSize: '1.15rem',
+                  lineHeight: 1.5,
+                  color: C.ink,
+                  margin: 0
                 }
-              })
+              }, 'I won\'t tell you to believe in yourself. I\'ll help you work out what\'s actually in the way.')
             ),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps },
-                'The coaching is practical. We work on one or two things, not fifteen. If you already know roughly where you want to go, we don\'t need to spend three sessions figuring that out again. We need to find what\'s actually stopping you and deal with that.'
-              )
+            e('p', { style: ps },
+              'The coaching is practical. We work on one or two things, not fifteen. If you already know roughly where you want to go, we don\'t need to spend three sessions figuring that out again. We need to find the thing that\'s stopping you and deal with it.'
             ),
-            e(FadeIn, { delay: 0.05 },
-              e('div', {
-                style: {
-                  borderLeft: '3px solid ' + C.teal,
-                  paddingLeft: 24,
-                  marginBottom: 24
-                }
-              },
-                e('p', {
-                  style: {
-                    fontFamily: F.serif,
-                    fontStyle: 'italic',
-                    fontSize: 'clamp(1.1rem, 2.8vw, 1.3rem)',
-                    lineHeight: 1.5,
-                    color: C.ink,
-                    margin: 0
-                  }
-                }, 'I won\'t tell you to believe in yourself. I\'ll help you work out what\'s actually in the way.')
-              )
+            e('p', { style: ps },
+              'I hold a Personal Performance Coaching Diploma with distinction from The Coaching Academy. I\'m a Level 6 Career Development Professional and DISC Practitioner. I also work full-time in university careers and coaching — so I\'m not just drawing on private practice. I see these patterns with real people, every week.'
             ),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: pInk },
-                'My aim is for you to not need me. If we\'re still having regular sessions six months from now, I\'ve probably not done my job properly.'
-              )
+            e('p', { style: ps },
+              'I\'m based in Chorley, Lancashire. Sessions are on Zoom, but if you\'re local and would rather do this over a coffee, that works too.'
             ),
-            e(FadeIn, { delay: 0.08 },
-              e('a', {
-                href: '#/about',
-                onClick: function (ev) {
-                  ev.preventDefault();
-                  props.setPage('about');
-                  window.scrollTo(0, 0);
-                },
-                style: {
-                  color: C.teal,
-                  fontSize: '.92rem',
-                  fontWeight: 500,
-                  textDecoration: 'none'
-                }
-              }, 'More about me →')
+            e('p', { style: Object.assign({}, ps, { color: C.ink, fontWeight: 500, marginBottom: 0 }) },
+              'My aim is for you to not need me. If we\'re still having regular sessions six months from now, I\'ve probably not done my job properly.'
             )
           ),
 
