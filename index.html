@@ -130,19 +130,6 @@
       var pInk = Object.assign({}, ps, { color: C.ink });
       var strong = { color: C.ink, fontWeight: 500 };
 
-      var FAQ_DATA = [
-        { q:'What happens in a session?', a:'Sixty minutes on Zoom. If you\'ve taken the GAP Profile, we start with your results — what they mean, what\'s showing up, what\'s driving it. Then we work out one or two things you can actually do this week. You\'ll get a written summary afterwards.' },
-        { q:'Is this therapy?', a:'No. Coaching isn\'t therapy and doesn\'t try to be. Therapy works back through what happened; coaching works forward from where you are. If it becomes clear that what you\'re dealing with is better suited to a therapist, I\'ll tell you that — and I won\'t keep taking your money.' },
-        { q:'Do I need to take the GAP Profile first?', a:'You don\'t have to. But it helps — it gives us a shared starting point so we can skip the "tell me about your situation" bit and get into the useful stuff faster.' },
-        { q:'What if I\'m not sure coaching is right for me?', a:'Start with the free GAP Profile. Read your results. If they feel accurate and you want help acting on them, book a session. If they don\'t — you\'ve lost four minutes and learned something about how you approach career decisions.' },
-        { q:'How do I know if it\'s actually working?', a:'You take the GAP Profile at the start and again at the end. So the shift isn\'t just something you feel — you can see it in the scores. That\'s one of the reasons I built it as a measurement tool, not just an assessment.' },
-        { q:'Looking at this for your son or daughter?', aEl: function (setPage) {
-          return [
-            'There is a separate page with more information for parents and supporters. ',
-            e('a', { key: 'pl', href: '#/parents', onClick: function (ev) { ev.preventDefault(); setPage('parents'); window.scrollTo(0, 0); }, style: { color: C.teal, fontWeight: 500, textDecoration: 'none' } }, 'Read more \u2192')
-          ];
-        }}
-      ];
 
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -545,22 +532,50 @@
           e(Divider),
 
           e('section', { id: 'faq', style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
-            e(FadeIn, null, e('h2', { style: h2s }, 'Questions')),
-            FAQ_DATA.map(function (f, i) {
+            e('p', {
+              style: {
+                fontSize: '.7rem',
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                color: C.teal,
+                fontWeight: 600,
+                marginBottom: 6
+              }
+            }, 'Questions'),
+            e('h2', { style: Object.assign({}, h2s, { fontSize: '1.7rem', marginBottom: 24 }) }, 'A few things people usually ask'),
+            [
+              { q: 'I already know what I should be doing. Why would this help?', a: 'Because knowing what to do is not the same as doing it. The GAP Profile helps you get a clearer read on what may actually be getting in the way, so you can stop circling the same move and work out what needs to shift.' },
+              { q: 'What happens in a 1:1 session?', a: 'We focus on the move you keep not making, use the GAP Profile result as the starting point if you have one, and work out what may be keeping the pattern in place. The aim is clarity and a more workable next step.' },
+              { q: 'Do you tell me what to do?', a: 'No. The actions need to come from you. My job is to help you see the problem more clearly, challenge what needs challenging, and help you get to something honest and doable.' },
+              { q: 'Is this therapy?', a: 'No. Coaching and therapy do different jobs. Therapy typically explores the past to understand the present. Coaching starts where you are and focuses on forward movement. If I think you\u2019d benefit from therapy instead of or alongside coaching, I\u2019ll say so.' },
+              { q: 'What is the 3-month coaching package + DISC profile for?', a: 'That is for people who want to work on this more properly over time. It is deeper support for patterns that feel more layered or more ingrained, with DISC adding another lens on communication and behavioural style. It is not where most people should start.' },
+              { q: 'Looking at this for your son or daughter?', a: 'There is a separate page with more information for parents and supporters.' }
+            ].map(function (f, i) {
               var isOpen = faqOpen === i;
-              return e('div', { key: i },
+              var isParents = f.q.indexOf('son or daughter') !== -1;
+              return e('div', {
+                key: i,
+                style: {
+                  background: isOpen ? '#fff' : 'rgba(255,255,255,0.6)',
+                  borderRadius: 10,
+                  marginBottom: 12,
+                  padding: '0 20px',
+                  transition: 'background .2s ease'
+                }
+              },
                 e('button', {
                   className: 'qb',
                   onClick: function () { setFaqOpen(isOpen ? null : i); },
                   'aria-expanded': isOpen,
-                  'aria-controls': 'faq-' + i
+                  'aria-controls': 'faq-' + i,
+                  style: { borderTop: 'none' }
                 },
                   e('span', null, f.q),
                   e('span', {
                     className: 'faq-icon',
                     'aria-hidden': 'true',
                     style: { transform: isOpen ? 'rotate(45deg)' : 'none' }
-                  }, '+')
+                  }, isOpen ? '\u00d7' : '+')
                 ),
                 e('div', {
                   id: 'faq-' + i,
@@ -572,13 +587,20 @@
                       color: C.mid,
                       fontSize: '.9rem',
                       lineHeight: 1.75,
-                      paddingBottom: 16
+                      paddingBottom: 20
                     }
-                  }, f.aEl ? f.aEl(props.setPage) : f.a)
+                  },
+                    f.a,
+                    isParents ? [' ', e('a', {
+                      key: 'pl',
+                      href: '#/parents',
+                      onClick: function (ev) { ev.preventDefault(); props.setPage('parents'); window.scrollTo(0, 0); },
+                      style: { color: C.teal, fontWeight: 500, textDecoration: 'none' }
+                    }, 'Read more \u2192')] : null
+                  )
                 )
               );
-            }),
-            e('div', { style: { borderTop: '1px solid ' + C.sandDk } })
+            })
           ),
 
           e('section', { style: Object.assign({}, w, { paddingTop: 16, paddingBottom: 48 }) },
