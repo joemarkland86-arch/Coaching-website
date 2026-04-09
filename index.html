@@ -71,8 +71,88 @@
       margin-bottom: 6px;
     }
     .footer-link:hover { color: #2a9d8f; }
-    .nav-link { transition: color .2s ease; }
-    .nav-link:hover { color: rgba(245,240,232,1) !important; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(26,31,61,.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(245,240,232,.06);
+    }
+    .site-header .nav-inner {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 56px;
+    }
+    .site-header .brand-link {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .site-header .brand-name {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 1.08rem;
+      color: rgba(245,240,232,.92);
+    }
+    .site-header .brand-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .62rem;
+      color: rgba(245,240,232,.38);
+      letter-spacing: .04em;
+    }
+    .site-header .brand-dot { color: #2a9d8f; }
+    .site-header .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-text-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .82rem;
+      color: rgba(245,240,232,.58);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .2s ease;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-text-link:hover,
+    .nav-text-link.active { color: rgba(245,240,232,.98); }
+    .proof-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .proof-pill {
+      display: inline-flex;
+      align-items: center;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(44,42,37,.08);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      color: #2c2a25;
+      backdrop-filter: blur(4px);
+    }
+    .proof-pill .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2a9d8f;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       .btn-amber, .faq-body, .faq-icon { transition: none; }
@@ -180,51 +260,35 @@
       }
 
       function Nav(props) {
-        return e('nav', {
-          style: {
-            padding: '20px 24px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            maxWidth: 620,
-            margin: '0 auto'
-          }
-        },
-          e('a', { href: '#', style: { textDecoration: 'none' } },
-            e('span', {
-              style: {
-                fontFamily: F.serif,
-                fontSize: '1.15rem',
-                color: C.ink,
-                display: 'block',
-                lineHeight: 1.2
-              }
-            }, 'Joe Markland', e('span', { style: { color: C.teal } }, '.')),
-            e('span', {
-              style: {
-                fontFamily: F.sans,
-                fontSize: '.68rem',
-                color: C.light,
-                letterSpacing: '.04em'
-              }
-            }, 'Career Coaching')
-          ),
-          e('div', { style: { display: 'flex', alignItems: 'center', gap: 20 } },
+        return e('header', { className: 'site-header' },
+          e('div', { className: 'nav-inner' },
             e('a', {
-              href: '#about',
-              style: {
-                fontFamily: F.sans,
-                fontSize: '.82rem',
-                color: C.light,
-                textDecoration: 'none',
-                fontWeight: 500
-              }
-            }, 'About'),
-            e('a', {
-              href: GAP,
-              className: 'btn-amber',
-              style: { padding: '8px 18px', fontSize: '.82rem', borderRadius: 5 }
-            }, 'Take the GAP Profile')
+              href: '#/',
+              className: 'brand-link',
+              onClick: function (ev) { ev.preventDefault(); props.setPage('home'); window.scrollTo(0, 0); }
+            },
+              e('span', { className: 'brand-name' },
+                'Joe Markland', e('span', { className: 'brand-dot' }, '.')
+              ),
+              e('span', { className: 'brand-sub' }, 'Career Coaching')
+            ),
+            e('div', { className: 'nav-right' },
+              e('a', {
+                href: '#/about',
+                className: 'nav-text-link' + (props.page === 'about' ? ' active' : ''),
+                onClick: function (ev) { ev.preventDefault(); props.setPage('about'); window.scrollTo(0, 0); }
+              }, 'About'),
+              e('a', {
+                href: '#/parents',
+                className: 'nav-text-link' + (props.page === 'parents' ? ' active' : ''),
+                onClick: function (ev) { ev.preventDefault(); props.setPage('parents'); window.scrollTo(0, 0); }
+              }, 'For parents'),
+              e('a', {
+                href: GAP,
+                className: 'btn-amber',
+                style: { padding: '0 16px', fontSize: '.8rem', borderRadius: 5 }
+              }, 'Take the GAP Profile')
+            )
           )
         );
       }
@@ -325,14 +389,14 @@
                 className: 'btn-amber',
                 style: { padding: '14px 28px', fontSize: '.95rem' }
               }, 'Take the free GAP Profile — 4 minutes'),
-              e('p', {
-                style: {
-                  color: C.light,
-                  fontSize: '.82rem',
-                  marginTop: 12,
-                  marginBottom: 0
-                }
-              }, 'Free. No sign-up. Takes about four minutes.')
+              e(FadeIn, { delay: 0.1 },
+                e('div', { className: 'proof-pills' },
+                  e('span', { className: 'proof-pill' }, e('span', { className: 'pill-dot' }), 'Free to take'),
+                  e('span', { className: 'proof-pill' }, e('span', { className: 'pill-dot' }), 'No sign-up'),
+                  e('span', { className: 'proof-pill' }, e('span', { className: 'pill-dot' }), 'About 4 minutes'),
+                  e('span', { className: 'proof-pill' }, e('span', { className: 'pill-dot' }), 'A clearer read on what\u2019s in the way')
+                )
+              )
             ),
             e(FadeIn, { delay: 0.14 },
               e('p', { style: Object.assign({}, ps, { marginTop: 32, marginBottom: 0 }) },
@@ -458,9 +522,10 @@
           e('section', { style: Object.assign({}, w, { paddingTop: 44, paddingBottom: 44 }) },
             e(FadeIn, null,
               e('p', { style: Object.assign({}, ps, { color: C.ink, marginBottom: 14 }) }, 'If nothing changes, this is usually what happens.'),
-              e('p', { style: Object.assign({}, ps, { marginBottom: 6 }) }, 'You keep thinking about the same move.'),
-              e('p', { style: Object.assign({}, ps, { marginBottom: 6 }) }, 'You keep almost starting.'),
-              e('p', { style: Object.assign({}, ps, { marginBottom: 0 }) }, 'And a few months pass without anything actually shifting.')
+              e('p', { style: Object.assign({}, ps, { marginBottom: 8 }) }, 'You keep opening the CV and closing it again.'),
+              e('p', { style: Object.assign({}, ps, { marginBottom: 8 }) }, 'You keep researching without starting.'),
+              e('p', { style: Object.assign({}, ps, { marginBottom: 8 }) }, 'You keep telling yourself you\u2019ll do it properly next week.'),
+              e('p', { style: Object.assign({}, ps, { marginBottom: 0, color: C.light, fontSize: '.95rem' }) }, 'And a few months pass without anything actually shifting.')
             )
           ),
 
@@ -548,7 +613,7 @@
               { q: 'What happens in a 1:1 session?', a: 'We focus on the move you keep not making, use the GAP Profile result as the starting point if you have one, and work out what may be keeping the pattern in place. The aim is clarity and a more workable next step.' },
               { q: 'Do you tell me what to do?', a: 'No. The actions need to come from you. My job is to help you see the problem more clearly, challenge what needs challenging, and help you get to something honest and doable.' },
               { q: 'Is this therapy?', a: 'No. Coaching and therapy do different jobs. Therapy typically explores the past to understand the present. Coaching starts where you are and focuses on forward movement. If I think you\u2019d benefit from therapy instead of or alongside coaching, I\u2019ll say so.' },
-              { q: 'What is the 3-month coaching package + DISC profile for?', a: 'That is for people who want to work on this more properly over time. It is deeper support for patterns that feel more layered or more ingrained, with DISC adding another lens on communication and behavioural style. It is not where most people should start.' },
+              { q: 'What is the six-week coaching programme?', a: 'It\u2019s for people who want to work on this more properly over time. Weekly sessions, personalised actions, and before-and-after tracking. It\u2019s deeper support for patterns that feel more layered or more ingrained. It\u2019s not where most people should start.' },
               { q: 'Looking at this for your son or daughter?', a: 'There is a separate page with more information for parents and supporters.' }
             ].map(function (f, i) {
               var isOpen = faqOpen === i;
@@ -885,7 +950,7 @@
                   letterSpacing: '-0.02em',
                   marginBottom: 16
                 }
-              }, 'For parents')
+              }, 'If someone you care about seems stuck, you\u2019re probably not imagining it')
             ),
             e(FadeIn, { delay: 0.1 },
               e('p', {
@@ -897,7 +962,7 @@
                   maxWidth: 480,
                   fontWeight: 400
                 }
-              }, 'If your son or daughter seems stuck, this page is for you.')
+              }, 'This page is for parents and supporters.')
             )
           ),
           e('div', { style: w },
@@ -906,7 +971,7 @@
           e('section', { style: Object.assign({}, w, { paddingTop: 44, paddingBottom: 12 }) },
             e(FadeIn, null,
               e('p', { style: pInk },
-                'If your son or daughter has graduated and seems stuck \u2014 applying for things half-heartedly, or not at all \u2014 you\u2019re not imagining it. And telling them to \u201Cjust get on with it\u201D probably isn\u2019t working, because the block usually isn\u2019t about motivation.'
+                'Telling them to \u201Cjust get on with it\u201D probably isn\u2019t working. And that\u2019s not because they\u2019re not listening. It\u2019s because the block usually isn\u2019t about motivation.'
               )
             ),
             e(FadeIn, { delay: 0.05 },
