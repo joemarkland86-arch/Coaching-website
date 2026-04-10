@@ -456,7 +456,7 @@
             e(FadeIn, null, e('h2', { style: h2s }, 'The GAP Profile')),
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps },
-                'A free career assessment that measures four things that quietly control whether you act — confidence, risk tolerance, identity fit, and capacity. One of them is usually the main one. That\'s what you\'ll see.'
+                'A free career assessment that shows you the main thing getting in the way of the move you already know you should be making. Not personality. Not strengths. The specific pattern that keeps stalling action — and why it\'s been so hard to shift on your own.'
               )
             ),
             e(FadeIn, { delay: 0.08 },
@@ -533,6 +533,18 @@
 
           e('section', { id: 'about', style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
             e('h2', { style: h2s }, 'Why I built this'),
+            e('img', {
+              src: 'D29A0595-88DA-4447-AF1C-E32353E143F0.jpeg',
+              alt: 'Joe Markland, career coach',
+              style: {
+                width: '100%',
+                borderRadius: 10,
+                aspectRatio: '4 / 5',
+                objectFit: 'cover',
+                maxHeight: 420,
+                margin: '16px 0 28px'
+              }
+            }),
             e('p', { style: Object.assign({}, ps, { color: C.ink, fontWeight: 500 }) },
               'I\'ve had the same conversation hundreds of times now. Someone sits down, capable, switched on — and says some version of: "I know what I should be doing. I just can\'t seem to do it."'
             ),
@@ -540,7 +552,7 @@
               'And they\'ve usually had advice. Sometimes quite good advice. The problem is, more advice isn\'t what they need. Something more specific is getting in the way — and until they can see what it actually is, nothing shifts.'
             ),
             e('p', { style: ps },
-              'I kept seeing the same four patterns come up. After a while, I stopped treating them as one-off problems and built something to measure them. That\'s the GAP Profile.'
+              'I kept seeing the same few patterns come up again and again. Different stories on the surface. Similar friction underneath. That\'s why I built the GAP Profile.'
             ),
             e('div', {
               style: {
@@ -560,15 +572,6 @@
                   margin: 0
                 }
               }, 'I won\'t tell you to believe in yourself. I\'ll help you work out what\'s actually in the way.')
-            ),
-            e('p', { style: ps },
-              'I work best with people who are thoughtful, capable, and already have a fair idea what they should be doing next. You usually don\'t need more ideas. You need to work out what keeps getting in the way \u2014 because until that bit becomes clear, it\'s very easy to keep thinking about the same move without actually making it.'
-            ),
-            e('p', { style: ps },
-              'I hold a Personal Performance Coaching Diploma with distinction from The Coaching Academy. I\'m a Level 6 Career Development Professional and DISC Practitioner.'
-            ),
-            e('p', { style: ps },
-              'I\'m based in Chorley, Lancashire. Sessions are on Zoom, but if you\'re local and would rather do this over a coffee, that works too.'
             ),
             e('p', { style: Object.assign({}, ps, { color: C.ink, fontWeight: 500, marginBottom: 0 }) },
               'My aim is for you to not need me. If we\'re still having regular sessions six months from now, I\'ve probably not done my job properly.'
