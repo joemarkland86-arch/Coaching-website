@@ -626,7 +626,7 @@
                   lineHeight: 1.6,
                   marginBottom: 0
                 }
-              }, '"It helped me learn so much about myself and improve as a person."'),
+              }, '"[PLACEHOLDER TESTIMONIAL — Joe to replace with real client quote before launch]"'),
               e('p', {
                 style: {
                   fontFamily: F.sans,
@@ -635,7 +635,7 @@
                   marginTop: 8,
                   marginBottom: 0
                 }
-              }, '— Journalism student, after three sessions')
+              }, '[PLACEHOLDER ATTRIBUTION — Joe to replace before launch]')
             )
           ),
 
@@ -646,8 +646,9 @@
             e(FadeIn, null, e('h2', { style: h2s }, 'Why I built the GAP Profile')),
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps }, 'I\'ll be straight about this. The GAP Profile started as a way for people to find me.'),
+              e('p', { style: ps }, 'I\'ve trained as a coach and spent years working as a careers adviser at a UK university, sitting with people who knew what they should be doing but weren\'t doing it. That\'s the gap I kept thinking about, and eventually the gap I built the assessment around.'),
               e('p', { style: ps }, 'I wanted something useful that someone could do in four minutes (for free, no sign-up) that would tell them something specific about why they were stuck. If it was helpful and they wanted to talk, they\'d know where to find me. If it was helpful and that was enough on its own, fair enough.'),
-              e('p', { style: ps }, 'But I didn\'t want to put out another personality quiz. There\'s plenty of those. So I went looking for what was already known about why capable people get stuck on things they know they should do.'),
+              e('p', { style: ps }, 'But I didn\'t want to put out another personality quiz. There\'s plenty of those. So I went looking for what was already known about it.'),
               e('p', { style: ps }, 'Turned out most of the work had already been done. Just spread across different places, by different people, looking at different angles of the same problem. The GAP Profile pulls it together into one short assessment that works out which angle is most in your way right now. Not forever. Just on this thing, where you are at the moment.'),
               e('p', { style: ps }, 'It\'s not a personality test. It won\'t tell you what you\'re like. It\'ll tell you what\'s stopping you. Which is a more useful thing to know if you\'re trying to actually move.'),
               pullQuote('The goal was never for people to need me. The goal was for people to understand what was getting in the way. And most of the time, once they do, they can take it from there.')
@@ -660,8 +661,7 @@
           e('section', { id: 'gap', style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
             e(FadeIn, null, e('h2', { style: h2s }, 'The GAP Profile')),
             e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps }, 'Four minutes. No sign-up. You get a result that tells you which pattern is most in your way right now, and what a useful next step looks like.'),
-              e('p', { style: ps }, 'Most people take it, read the result, and that\'s enough. If you want to go further from there, you\'ll know where to find me.')
+              e('p', { style: ps }, 'You\'ve heard enough about it. Here\'s what one of the four patterns looks like.')
             ),
             e(FadeIn, { delay: 0.08 },
               e('div', {
@@ -747,9 +747,9 @@
                 }
               },
                 [
-                  { name: 'Archetype Workbook', desc: 'Walk through it at your own pace', price: '£9.99', note: 'About an hour, matched to your pattern' },
-                  { name: 'GAP Profile Session', desc: 'Think it through with someone', price: '£97', note: '60 minutes, one-to-one, on Zoom', rec: true },
-                  { name: 'Six-Week Programme', desc: 'Properly work through a real shift', price: '£500', note: 'Six sessions over six weeks. Payment plan available' }
+                  { name: 'Archetype Workbook', desc: 'For when you want to do the thinking on your own', price: '£9.99', note: 'About an hour, matched to your pattern' },
+                  { name: 'GAP Profile Session', desc: 'For when you would rather think it through with someone who will listen properly', price: '£97', note: '60 minutes, one-to-one, on Zoom', rec: true },
+                  { name: 'Six-Week Programme', desc: 'For when one conversation will not get you there', price: '£500', note: 'Six sessions over six weeks. Payment plan available' }
                 ].map(function (r, i) {
                   return e('div', {
                     key: i,
