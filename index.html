@@ -573,13 +573,34 @@
           e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
             e(FadeIn, null, e('h2', { style: h2s }, 'This tends to be for you if…')),
             e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps }, 'You\'ve got a degree, maybe some work experience, and on paper things look fine. The problem isn\'t on paper.'),
-              e('p', { style: ps }, 'You know roughly what you should be doing. Updating the CV. Applying for the thing. Having the conversation. But when you sit down to do it, something else happens instead.'),
-              e('p', { style: ps }, 'You\'re in a job that was meant to be temporary and has quietly become the default.'),
-              e('p', { style: ps }, 'You keep applying for roles you don\'t really want, because at least it feels like doing something.'),
-              e('p', { style: ps }, 'You\'ve started to compare yourself to people you were at uni with, and the comparison isn\'t going well.'),
-              e('p', { style: ps }, 'Someone at a family lunch asked what the plan was, and you didn\'t have a good answer.'),
-              e('p', { style: ps }, 'You\'ve read the articles. You\'ve watched the videos. More advice isn\'t the thing that\'s missing.'),
+              e('p', { style: ps },
+              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
+              'You\'ve got a degree, maybe some work experience, and on paper things look fine. The problem isn\'t on paper.'
+            ),
+              e('p', { style: ps },
+              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
+              'You know roughly what you should be doing. Updating the CV. Applying for the thing. Having the conversation. But when you sit down to do it, something else happens instead.'
+            ),
+              e('p', { style: ps },
+              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
+              'You\'re in a job that was meant to be temporary and has quietly become the default.'
+            ),
+              e('p', { style: ps },
+              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
+              'You keep applying for roles you don\'t really want, because at least it feels like doing something.'
+            ),
+              e('p', { style: ps },
+              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
+              'You\'ve started to compare yourself to people you were at uni with, and the comparison isn\'t going well.'
+            ),
+              e('p', { style: ps },
+              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
+              'Someone at a family lunch asked what the plan was, and you didn\'t have a good answer.'
+            ),
+              e('p', { style: ps },
+              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
+              'You\'ve read the articles. You\'ve watched the videos. More advice isn\'t the thing that\'s missing.'
+            ),
               e('p', { style: pInk }, 'If two or three of those landed, you\'re in the right place.')
             )
           ),
@@ -605,7 +626,7 @@
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps }, 'Here\'s something most people don\'t expect about coaching: you already have what you need to work this out.'),
               e('p', { style: ps }, 'Not in a motivational way. In a literal one. You know your situation, your history, what you\'ve tried, what you actually want, what you\'re avoiding, what scares you, what excites you. Nobody knows any of that better than you do. The bit that\'s hard isn\'t knowing. It\'s hearing yourself think clearly enough to use what you already know.'),
-              e('p', { style: ps }, 'That\'s what a session is for.'),
+              e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'That\'s what a session is for.'),
               e('p', { style: ps }, 'We talk. You do the thinking. I listen properly (which is rarer than it sounds) and I notice things. The word you keep coming back to. The thing you mentioned in passing that probably mattered. The pattern in what you\'re describing that you can\'t quite see from where you\'re standing. I\'ll say what I notice. Sometimes a question. Mostly I\'ll just be quiet long enough for you to hear what you\'re actually saying.'),
               e('p', { style: ps }, 'The ideas you leave with will be yours. Not mine. That\'s not me being modest. It\'s that the ones I might come up with would be designed for someone I\'ve known for an hour. The ones you come up with are designed by the person who has to live with them.'),
               pullQuote('I won\'t tell you to believe in yourself. I\'ll help you work out what\'s actually in the way.')
@@ -647,7 +668,7 @@
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps }, 'I\'ll be straight about this. The GAP Profile started as a way for people to find me.'),
               e('p', { style: ps }, 'I\'ve trained as a coach and spent years working as a careers adviser at a UK university, sitting with people who knew what they should be doing but weren\'t doing it. That\'s the gap I kept thinking about, and eventually the gap I built the assessment around.'),
-              e('p', { style: ps }, 'I wanted something useful that someone could do in four minutes (for free, no sign-up) that would tell them something specific about why they were stuck. If it was helpful and they wanted to talk, they\'d know where to find me. If it was helpful and that was enough on its own, fair enough.'),
+              e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'I wanted something useful that someone could do in four minutes (for free, no sign-up) that would tell them something specific about why they were stuck. If it was helpful and they wanted to talk, they\'d know where to find me. If it was helpful and that was enough on its own, fair enough.'),
               e('p', { style: ps }, 'But I didn\'t want to put out another personality quiz. There\'s plenty of those. So I went looking for what was already known about it.'),
               e('p', { style: ps }, 'Turned out most of the work had already been done. Just spread across different places, by different people, looking at different angles of the same problem. The GAP Profile pulls it together into one short assessment that works out which angle is most in your way right now. Not forever. Just on this thing, where you are at the moment.'),
               e('p', { style: ps }, 'It\'s not a personality test. It won\'t tell you what you\'re like. It\'ll tell you what\'s stopping you. Which is a more useful thing to know if you\'re trying to actually move.'),
