@@ -614,6 +614,33 @@
 
           e(Divider),
 
+          /* ── Proof slot ── */
+          e('section', { style: Object.assign({}, w, { paddingTop: 32, paddingBottom: 32 }) },
+            e(FadeIn, null,
+              e('p', {
+                style: {
+                  fontFamily: F.serif,
+                  fontStyle: 'italic',
+                  fontSize: '1.1rem',
+                  color: C.mid,
+                  lineHeight: 1.6,
+                  marginBottom: 0
+                }
+              }, '"It helped me learn so much about myself and improve as a person."'),
+              e('p', {
+                style: {
+                  fontFamily: F.sans,
+                  fontSize: '.85rem',
+                  color: C.light,
+                  marginTop: 8,
+                  marginBottom: 0
+                }
+              }, '— Journalism student, after three sessions')
+            )
+          ),
+
+          e(Divider),
+
           /* ── Section 5: Why I built the GAP Profile ── */
           e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
             e(FadeIn, null, e('h2', { style: h2s }, 'Why I built the GAP Profile')),
@@ -671,8 +698,7 @@
                     fontSize: '.92rem',
                     color: 'rgba(245,240,232,.7)',
                     lineHeight: 1.6,
-                    marginBottom: 10,
-                    fontStyle: 'italic'
+                    marginBottom: 10
                   }
                 }, 'You\'ve got the experience. You\'ve got the feedback. You\'ve got the things you\'ve already done that should count.'),
                 e('p', {
@@ -680,8 +706,7 @@
                     fontSize: '.92rem',
                     color: 'rgba(245,240,232,.7)',
                     lineHeight: 1.6,
-                    marginBottom: 0,
-                    fontStyle: 'italic'
+                    marginBottom: 0
                   }
                 }, 'But somehow they don\'t quite land — and you\'re still waiting for the version of yourself that feels ready.'),
                 e('p', {
@@ -703,33 +728,6 @@
               e('p', {
                 style: { color: C.light, fontSize: '.85rem', marginTop: 12, marginBottom: 0 }
               }, 'Free. No sign-up. About four minutes.')
-            )
-          ),
-
-          e(Divider),
-
-          /* ── Proof slot ── */
-          e('section', { style: Object.assign({}, w, { paddingTop: 32, paddingBottom: 32 }) },
-            e(FadeIn, null,
-              e('p', {
-                style: {
-                  fontFamily: F.serif,
-                  fontStyle: 'italic',
-                  fontSize: '1.1rem',
-                  color: C.mid,
-                  lineHeight: 1.6,
-                  marginBottom: 0
-                }
-              }, '“It helped me learn so much about myself and improve as a person.”'),
-              e('p', {
-                style: {
-                  fontFamily: F.sans,
-                  fontSize: '.85rem',
-                  color: C.light,
-                  marginTop: 8,
-                  marginBottom: 0
-                }
-              }, '— Journalism student, after three sessions')
             )
           ),
 
