@@ -430,11 +430,6 @@
                 onClick: function (ev) { ev.preventDefault(); props.setPage('about'); window.scrollTo(0, 0); }
               }, 'About'),
               e('a', {
-                href: '#/parents',
-                className: 'nav-text-link' + (props.page === 'parents' ? ' active' : ''),
-                onClick: function (ev) { ev.preventDefault(); props.setPage('parents'); window.scrollTo(0, 0); }
-              }, 'For parents'),
-              e('a', {
                 href: GAP,
                 className: 'btn-amber',
                 style: { padding: '0 16px', fontSize: '.8rem', borderRadius: 5 }
