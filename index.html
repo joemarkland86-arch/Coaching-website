@@ -573,35 +573,14 @@
           e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
             e(FadeIn, null, e('h2', { style: h2s }, 'This tends to be for you if…')),
             e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps },
-              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
-              'You\'ve got a degree, maybe some work experience, and on paper things look fine. The problem isn\'t on paper.'
-            ),
-              e('p', { style: ps },
-              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
-              'You know roughly what you should be doing. Updating the CV. Applying for the thing. Having the conversation. But when you sit down to do it, something else happens instead.'
-            ),
-              e('p', { style: ps },
-              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
-              'You\'re in a job that was meant to be temporary and has quietly become the default.'
-            ),
-              e('p', { style: ps },
-              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
-              'You keep applying for roles you don\'t really want, because at least it feels like doing something.'
-            ),
-              e('p', { style: ps },
-              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
-              'You\'ve started to compare yourself to people you were at uni with, and the comparison isn\'t going well.'
-            ),
-              e('p', { style: ps },
-              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
-              'Someone at a family lunch asked what the plan was, and you didn\'t have a good answer.'
-            ),
-              e('p', { style: ps },
-              e('span', { style: { color: C.teal, fontWeight: 600 } }, '– '),
-              'You\'ve read the articles. You\'ve watched the videos. More advice isn\'t the thing that\'s missing.'
-            ),
-              e('p', { style: pInk }, 'If two or three of those landed, you\'re in the right place.')
+              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You\'ve got a degree, maybe some work experience, and on paper things look fine. The problem isn\'t on paper.'),
+              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You know roughly what you should be doing. Updating the CV. Applying for the thing. Having the conversation. But when you sit down to do it, something else happens instead.'),
+              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You\'re in a job that was meant to be temporary and has quietly become the default.'),
+              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You keep applying for roles you don\'t really want, because at least it feels like doing something.'),
+              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You\'ve started to compare yourself to people you were at uni with, and the comparison isn\'t going well.'),
+              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'Someone at a family lunch asked what the plan was, and you didn\'t have a good answer.'),
+              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You\'ve read the articles. You\'ve watched the videos. More advice isn\'t the thing that\'s missing.'),
+              e('p', { style: Object.assign({}, pInk, { marginTop: 8 }) }, 'If two or three of those landed, you\'re in the right place.')
             )
           ),
 
