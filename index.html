@@ -452,7 +452,23 @@
           e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
             e(FadeIn, null, e('h2', { style: h2s }, 'How I coach')),
             e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps }, 'Here\'s something most people don\'t expect about coaching: you already have what you need to work this out.'),
+              e('p', { style: ps }, 'Here\'s something most people don\'t expect about coaching: you already have what you need to work this out.')
+            ),
+            e(FadeIn, { delay: 0.04 },
+              e('img', {
+                src: 'joe.jpg',
+                alt: 'Joe Markland, career coach',
+                style: {
+                  width: '100%',
+                  borderRadius: 10,
+                  aspectRatio: '4 / 5',
+                  objectFit: 'cover',
+                  maxHeight: 420,
+                  margin: '8px 0 28px'
+                }
+              })
+            ),
+            e(FadeIn, { delay: 0.06 },
               e('p', { style: ps }, 'Not in a motivational way. In a literal one. You know your situation, your history, what you\'ve tried, what you actually want, what you\'re avoiding, what scares you, what excites you. Nobody knows any of that better than you do. The bit that\'s hard isn\'t knowing. It\'s hearing yourself think clearly enough to use what you already know.'),
               e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'That\'s what a session is for.'),
               e('p', { style: ps }, 'We talk. You do the thinking. I listen properly (which is rarer than it sounds) and I notice things. The word you keep coming back to. The thing you mentioned in passing that probably mattered. The pattern in what you\'re describing that you can\'t quite see from where you\'re standing. I\'ll say what I notice. Sometimes a question. Mostly I\'ll just be quiet long enough for you to hear what you\'re actually saying.'),
@@ -474,8 +490,7 @@
               e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'I wanted something useful that someone could do in five minutes (for free, no sign-up) that would tell them something specific about why they were stuck. If it was helpful and they wanted to talk, they\'d know where to find me. If it was helpful and that was enough on its own, fair enough.'),
               e('p', { style: ps }, 'But I didn\'t want to put out another personality quiz. There\'s plenty of those. So I went looking for what was already known about it.'),
               e('p', { style: ps }, 'Turned out most of the work had already been done. Just spread across different places, by different people, looking at different angles of the same problem. The GAP Profile pulls it together into one short assessment that works out which angle is most in your way right now. Not forever. Just on this thing, where you are at the moment.'),
-              e('p', { style: ps }, 'It\'s not a personality test. It won\'t tell you what you\'re like. It\'ll tell you what\'s stopping you. Which is a more useful thing to know if you\'re trying to actually move.'),
-              pullQuote('The goal was never for people to need me. The goal was for people to understand what was getting in the way. And most of the time, once they do, they can take it from there.')
+              e('p', { style: ps }, 'It\'s not a personality test. It won\'t tell you what you\'re like. It\'ll tell you what\'s stopping you. Which is a more useful thing to know if you\'re trying to actually move.')
             )
           ),
 
@@ -524,15 +539,7 @@
                     lineHeight: 1.6,
                     marginBottom: 10
                   }
-                }, 'You\'ve got the experience. You\'ve got the feedback. You\'ve got the things you\'ve already done that should count.'),
-                e('p', {
-                  style: {
-                    fontSize: '.92rem',
-                    color: 'rgba(245,240,232,.7)',
-                    lineHeight: 1.6,
-                    marginBottom: 0
-                  }
-                }, 'But somehow they don\'t quite land, and you\'re still waiting for the version of yourself that feels ready.'),
+                }, 'You can do this. You just don\'t trust your own evidence.'),
                 e('p', {
                   style: {
                     fontSize: '.72rem',
@@ -636,7 +643,7 @@
               { q: 'I\'m a parent reading this for my son or daughter. Is that strange?', a: 'Not at all. Quite a few of the people I work with got here because a parent sent them the link. If you\'re trying to work out how to help without pushing too hard, I\'ve written a page specifically for parents.' },
               { q: 'How do I know whether the workbook is enough or I need a session?', a: 'If you\'re the sort of person who follows through on something written down, the workbook will get you a long way on its own. If you\'d rather think it through with someone, book a session. There\'s no wrong answer, and you don\'t have to decide now. You can take it a step at a time.' },
               { q: 'I\'m not a graduate. Does this still apply?', a: 'Mostly I work with graduates and people early in their careers, because that\'s where the patterns I work with tend to show up clearest. But the same things get in the way at other points too. Take the GAP Profile. It\'ll give you a quick sense of whether this is useful for where you are.' },
-              { q: 'Where are you based? Do I have to be local?', a: 'I\'m based in the North of England. Sessions are online, so where you are doesn\'t really matter. I work with people across the UK and occasionally further afield.' }
+              { q: 'Where are you based? Do I have to be local?', a: 'I\'m based in Chorley, in Lancashire. Sessions are online, so where you are doesn\'t really matter. I work with people across the UK and occasionally further afield.' }
             ].map(function (f, i) {
               var isOpen = faqOpen === i;
               var isParents = f.q.indexOf('son or daughter') !== -1;
@@ -690,7 +697,7 @@
           /* ── Section 9: A last thought ── */
           e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 80 }) },
             e(FadeIn, null,
-              e('h2', { style: h2s }, 'A last thought.'),
+              e('h2', { style: h2s }, 'A last thought'),
               e('p', { style: ps },
                 'If you\'ve read this far, you\'re probably the kind of person who\'s already done a lot of thinking about your situation. The GAP Profile is the most useful next step I can offer you. But if you\'d rather skip it and just have a conversation, that\'s also fine.'
               ),
@@ -744,7 +751,7 @@
             ),
             e(FadeIn, { delay: 0.12 },
               e('img', {
-                src: 'D29A0595-88DA-4447-AF1C-E32353E143F0.jpeg',
+                src: 'joe.jpg',
                 alt: 'Joe Markland, career coach',
                 style: {
                   width: '100%',
