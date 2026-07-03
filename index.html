@@ -4,10 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Joe Markland — Career Coaching</title>
-  <meta name="description" content="Career coaching for capable people who feel stuck. Free career assessment — find out what\'s actually blocking your progress." />
+  <meta name="description" content="Career coaching for capable people who feel stuck. Free career assessment — find out what's actually blocking your progress." />
   <meta property="og:title" content="Joe Markland — Career Coaching" />
-  <meta property="og:description" content="If you already know what you should be doing… what\'s actually stopping you? Free career assessment — 5 minutes, no sign-up." />
+  <meta property="og:description" content="If you already know what you should be doing… what's actually stopping you? Free career assessment — 5 minutes, no sign-up." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://joemarkland.co.uk/" />
+  <meta property="og:image" content="https://joemarkland.co.uk/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://joemarkland.co.uk/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1f3d'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' fill='%23f5f0e8' text-anchor='middle'%3EJ%3C/text%3E%3Ccircle cx='47' cy='44' r='4' fill='%232a9d8f'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -265,7 +272,7 @@
             e('a', {
               href: '#/',
               className: 'brand-link',
-              onClick: function (ev) { ev.preventDefault(); props.setPage('home'); window.scrollTo(0, 0); }
+              onClick: function (ev) { ev.preventDefault(); props.setPage('home'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
             },
               e('span', { className: 'brand-name' },
                 'Joe Markland', e('span', { className: 'brand-dot' }, '.')
@@ -276,7 +283,7 @@
               e('a', {
                 href: '#/about',
                 className: 'nav-text-link' + (props.page === 'about' ? ' active' : ''),
-                onClick: function (ev) { ev.preventDefault(); props.setPage('about'); window.scrollTo(0, 0); }
+                onClick: function (ev) { ev.preventDefault(); props.setPage('about'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
               }, 'About'),
               e('a', {
                 href: GAP,
@@ -330,9 +337,9 @@
             ),
             e('div', { style: { flex: '1 1 120px' } },
               e('p', { style: colHead }, 'Explore'),
-              e('a', { href: '#/', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('home'); window.scrollTo(0, 0); } }, 'Home'),
-              e('a', { href: '#/about', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('about'); window.scrollTo(0, 0); } }, 'About'),
-              e('a', { href: '#/parents', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('parents'); window.scrollTo(0, 0); } }, 'For parents'),
+              e('a', { href: '#/', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('home'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } }, 'Home'),
+              e('a', { href: '#/about', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('about'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } }, 'About'),
+              e('a', { href: '#/parents', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('parents'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } }, 'For parents'),
               e('a', { href: GAP, className: 'footer-link', target: '_blank', rel: 'noopener noreferrer' }, 'Take the GAP Profile')
             ),
             e('div', { style: { flex: '1 1 120px' } },
@@ -345,7 +352,7 @@
           e('div', { style: { maxWidth: 620, margin: '20px auto 0', borderTop: '1px solid rgba(245,240,232,.08)', paddingTop: 16 } },
             e('p', {
               style: {
-                color: 'rgba(245,240,232,.15)',
+                color: 'rgba(245,240,232,.4)',
                 fontSize: '.66rem',
                 fontFamily: F.sans
               }
@@ -412,7 +419,14 @@
               }, 'Find what\'s actually stopping you'),
               e('p', {
                 style: { color: C.light, fontSize: '.85rem', marginTop: 12, marginBottom: 0 }
-              }, 'Free. No sign-up. About five minutes.')
+              }, 'Free. No sign-up. About five minutes.'),
+              e('div', { className: 'proof-pills' },
+                ['Personal Performance Life Coaching Diploma, The Coaching Academy, Distinction', 'Level 6 Career Development Professional', 'Careers Adviser, University of Lancashire'].map(function (t, i) {
+                  return e('span', { key: i, className: 'proof-pill' },
+                    e('span', { className: 'pill-dot' }), t
+                  );
+                })
+              )
             )
           ),
 
@@ -458,6 +472,9 @@
               e('img', {
                 src: 'joe.jpg',
                 alt: 'Joe Markland, career coach',
+                width: 620,
+                height: 775,
+                loading: 'lazy',
                 style: {
                   width: '100%',
                   borderRadius: 10,
@@ -683,7 +700,7 @@
                     isParents ? [' ', e('a', {
                       key: 'pl',
                       href: '#/parents',
-                      onClick: function (ev) { ev.preventDefault(); props.setPage('parents'); window.scrollTo(0, 0); },
+                      onClick: function (ev) { ev.preventDefault(); props.setPage('parents'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); },
                       style: { color: C.teal, fontWeight: 500, textDecoration: 'none' }
                     }, 'Read more →')] : null
                   )
@@ -716,7 +733,7 @@
 
           e('section', { style: Object.assign({}, w, { paddingTop: 52, paddingBottom: 44 }) },
             e(FadeIn, null,
-              e('p', {
+              e('h1', {
                 style: {
                   fontFamily: F.sans,
                   fontSize: 'clamp(1.1rem, 2.6vw, 1.25rem)',
@@ -753,6 +770,9 @@
               e('img', {
                 src: 'joe.jpg',
                 alt: 'Joe Markland, career coach',
+                width: 620,
+                height: 775,
+                loading: 'lazy',
                 style: {
                   width: '100%',
                   borderRadius: 10,
