@@ -4,10 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Joe Markland — Career Coaching</title>
-  <meta name="description" content="Career coaching for capable people who feel stuck. Free career assessment — find out what\'s actually blocking your progress." />
+  <meta name="description" content="Career coaching for capable people who feel stuck. Free career assessment — find out what's actually blocking your progress." />
   <meta property="og:title" content="Joe Markland — Career Coaching" />
-  <meta property="og:description" content="If you already know what you should be doing… what\'s actually stopping you? Free career assessment — 5 minutes, no sign-up." />
+  <meta property="og:description" content="If you already know what you should be doing… what's actually stopping you? Free career assessment — 5 minutes, no sign-up." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://joemarkland.co.uk/" />
+  <meta property="og:image" content="https://joemarkland.co.uk/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://joemarkland.co.uk/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1f3d'/%3E%3Ctext x='30' y='44' font-family='Georgia,serif' font-size='36' fill='%23f5f0e8' text-anchor='middle'%3EJ%3C/text%3E%3Ccircle cx='46' cy='42' r='4' fill='%232a9d8f'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -18,7 +25,7 @@
     html { scroll-behavior: smooth; }
     body { margin: 0; background: #f5f0e8; }
     h1, h2, h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
-    ::selection { background: rgba(42,157,143,.12); }
+    ::selection { background: rgba(42,157,143,.18); }
     a { color: #2a9d8f; }
     *:focus-visible { outline: 2px solid #2a9d8f; outline-offset: 2px; }
     .btn-amber {
@@ -31,7 +38,7 @@
       font-family: 'DM Sans', sans-serif;
       transition: background .2s ease, transform .15s ease;
     }
-    .btn-amber:hover { background: #d08a10; transform: translateY(-1px); }
+    .btn-amber:hover { background: #d08a10; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(233,163,25,.3); }
     .btn-amber:active { transform: translateY(0); }
     .qb {
       width: 100%;
@@ -134,8 +141,9 @@
     .proof-pill {
       display: inline-flex;
       align-items: center;
-      height: 32px;
-      padding: 0 12px;
+      min-height: 32px;
+      padding: 6px 12px;
+      line-height: 1.35;
       border-radius: 999px;
       background: rgba(255,255,255,.55);
       border: 1px solid rgba(44,42,37,.08);
@@ -152,6 +160,16 @@
       background: #2a9d8f;
       margin-right: 8px;
       flex-shrink: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: .05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -195,7 +213,7 @@
       var w = { maxWidth: 620, margin: '0 auto', padding: '0 24px' };
       var h2s = {
         fontFamily: F.serif,
-        fontSize: '1.55rem',
+        fontSize: 'clamp(1.6rem, 3vw, 1.9rem)',
         lineHeight: 1.25,
         color: C.ink,
         marginBottom: 18,
@@ -254,9 +272,11 @@
       }
 
       function Divider() {
-        return e('div', {
-          style: Object.assign({}, w, { borderTop: '1px solid ' + C.sandDk })
-        });
+        return e('div', { style: Object.assign({}, w) },
+          e('div', { style: { position: 'relative', borderTop: '1px solid ' + C.sandDk } },
+            e('span', { 'aria-hidden': 'true', style: { position: 'absolute', top: -3.5, left: '50%', marginLeft: -3, width: 6, height: 6, borderRadius: '50%', background: C.teal, opacity: .5 } })
+          )
+        );
       }
 
       function Nav(props) {
@@ -265,7 +285,7 @@
             e('a', {
               href: '#/',
               className: 'brand-link',
-              onClick: function (ev) { ev.preventDefault(); props.setPage('home'); window.scrollTo(0, 0); }
+              onClick: function (ev) { ev.preventDefault(); props.setPage('home'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
             },
               e('span', { className: 'brand-name' },
                 'Joe Markland', e('span', { className: 'brand-dot' }, '.')
@@ -276,7 +296,7 @@
               e('a', {
                 href: '#/about',
                 className: 'nav-text-link' + (props.page === 'about' ? ' active' : ''),
-                onClick: function (ev) { ev.preventDefault(); props.setPage('about'); window.scrollTo(0, 0); }
+                onClick: function (ev) { ev.preventDefault(); props.setPage('about'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
               }, 'About'),
               e('a', {
                 href: GAP,
@@ -318,7 +338,7 @@
                   color: 'rgba(245,240,232,0.9)',
                   marginBottom: 4
                 }
-              }, 'Joe Markland'),
+              }, 'Joe Markland', e('span', { style: { color: C.teal } }, '.')),
               e('p', {
                 style: {
                   fontFamily: F.sans,
@@ -330,9 +350,9 @@
             ),
             e('div', { style: { flex: '1 1 120px' } },
               e('p', { style: colHead }, 'Explore'),
-              e('a', { href: '#/', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('home'); window.scrollTo(0, 0); } }, 'Home'),
-              e('a', { href: '#/about', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('about'); window.scrollTo(0, 0); } }, 'About'),
-              e('a', { href: '#/parents', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('parents'); window.scrollTo(0, 0); } }, 'For parents'),
+              e('a', { href: '#/', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('home'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } }, 'Home'),
+              e('a', { href: '#/about', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('about'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } }, 'About'),
+              e('a', { href: '#/parents', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('parents'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } }, 'For parents'),
               e('a', { href: GAP, className: 'footer-link', target: '_blank', rel: 'noopener noreferrer' }, 'Take the GAP Profile')
             ),
             e('div', { style: { flex: '1 1 120px' } },
@@ -345,7 +365,7 @@
           e('div', { style: { maxWidth: 620, margin: '20px auto 0', borderTop: '1px solid rgba(245,240,232,.08)', paddingTop: 16 } },
             e('p', {
               style: {
-                color: 'rgba(245,240,232,.15)',
+                color: 'rgba(245,240,232,.4)',
                 fontSize: '.66rem',
                 fontFamily: F.sans
               }
@@ -388,8 +408,9 @@
             e(FadeIn, null,
               e('h1', {
                 style: {
-                  fontSize: 'clamp(1.75rem, 3.8vw, 2.5rem)',
-                  lineHeight: 1.2,
+                  fontSize: 'clamp(2.2rem, 5.5vw, 3.1rem)',
+                  lineHeight: 1.15,
+                  letterSpacing: '-0.02em',
                   color: C.ink,
                   marginBottom: 24,
                   fontFamily: F.serif,
@@ -412,7 +433,14 @@
               }, 'Find what\'s actually stopping you'),
               e('p', {
                 style: { color: C.light, fontSize: '.85rem', marginTop: 12, marginBottom: 0 }
-              }, 'Free. No sign-up. About five minutes.')
+              }, 'Free. No sign-up. About five minutes.'),
+              e('div', { className: 'proof-pills' },
+                ['Personal Performance Life Coaching Diploma, The Coaching Academy, Distinction', 'Level 6 Career Development Professional', 'Careers Adviser, University of Lancashire'].map(function (t, i) {
+                  return e('span', { key: i, className: 'proof-pill' },
+                    e('span', { className: 'pill-dot' }), t
+                  );
+                })
+              )
             )
           ),
 
@@ -458,13 +486,18 @@
               e('img', {
                 src: 'joe.jpg',
                 alt: 'Joe Markland, career coach',
+                width: 620,
+                height: 775,
+                loading: 'lazy',
                 style: {
                   width: '100%',
-                  borderRadius: 10,
+                  height: 'auto',
+                  borderRadius: 6,
                   aspectRatio: '4 / 5',
                   objectFit: 'cover',
                   maxHeight: 420,
-                  margin: '8px 0 28px'
+                  margin: '8px 0 28px',
+                  boxShadow: '14px 14px 0 rgba(42,157,143,.16)'
                 }
               })
             ),
@@ -505,11 +538,12 @@
             e(FadeIn, { delay: 0.08 },
               e('div', {
                 style: {
-                  background: C.navy,
+                  background: 'radial-gradient(120% 120% at 100% 0%, rgba(42,157,143,.16), transparent 55%) ' + C.navy,
                   borderRadius: 10,
                   padding: '28px 24px',
                   marginBottom: 24,
-                  color: '#f5f0e8'
+                  color: '#f5f0e8',
+                  border: '1px solid rgba(42,157,143,.22)'
                 }
               },
                 e('p', {
@@ -574,7 +608,8 @@
                   background: C.white,
                   borderRadius: 8,
                   padding: '20px 22px',
-                  border: '1px solid ' + C.sandDk
+                  border: '1px solid ' + C.sandDk,
+                  boxShadow: '0 2px 14px rgba(44,42,37,.05)'
                 }
               },
                 [
@@ -654,7 +689,8 @@
                   borderRadius: 10,
                   marginBottom: 12,
                   padding: '0 20px',
-                  transition: 'background .2s ease'
+                  boxShadow: isOpen ? '0 4px 16px rgba(44,42,37,.07)' : 'none',
+                  transition: 'background .2s ease, box-shadow .25s ease'
                 }
               },
                 e('button', {
@@ -683,7 +719,7 @@
                     isParents ? [' ', e('a', {
                       key: 'pl',
                       href: '#/parents',
-                      onClick: function (ev) { ev.preventDefault(); props.setPage('parents'); window.scrollTo(0, 0); },
+                      onClick: function (ev) { ev.preventDefault(); props.setPage('parents'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); },
                       style: { color: C.teal, fontWeight: 500, textDecoration: 'none' }
                     }, 'Read more →')] : null
                   )
@@ -716,7 +752,7 @@
 
           e('section', { style: Object.assign({}, w, { paddingTop: 52, paddingBottom: 44 }) },
             e(FadeIn, null,
-              e('p', {
+              e('h1', {
                 style: {
                   fontFamily: F.sans,
                   fontSize: 'clamp(1.1rem, 2.6vw, 1.25rem)',
@@ -753,13 +789,18 @@
               e('img', {
                 src: 'joe.jpg',
                 alt: 'Joe Markland, career coach',
+                width: 620,
+                height: 775,
+                loading: 'lazy',
                 style: {
                   width: '100%',
-                  borderRadius: 10,
+                  height: 'auto',
+                  borderRadius: 6,
                   aspectRatio: '4 / 5',
                   objectFit: 'cover',
                   maxHeight: 420,
-                  margin: '28px 0'
+                  margin: '28px 0',
+                  boxShadow: '14px 14px 0 rgba(42,157,143,.16)'
                 }
               })
             )
