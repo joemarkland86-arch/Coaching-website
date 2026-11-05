@@ -97,7 +97,13 @@
       text-decoration: none;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      min-height: 44px;
       line-height: 1.15;
+    }
+    @media (max-width: 480px) {
+      .site-header .nav-inner { flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; gap: 4px; }
+      .site-header .nav-right { width: 100%; justify-content: space-between; }
     }
     .site-header .brand-name {
       font-family: 'Instrument Serif', Georgia, serif;
@@ -107,7 +113,7 @@
     .site-header .brand-sub {
       font-family: 'DM Sans', sans-serif;
       font-size: .62rem;
-      color: rgba(245,240,232,.38);
+      color: rgba(245,240,232,.65);
       letter-spacing: .04em;
     }
     .site-header .brand-dot { color: #2a9d8f; }
@@ -298,7 +304,7 @@
               e('a', {
                 href: GAP,
                 className: 'btn-amber',
-                style: { padding: '0 16px', fontSize: '.8rem', borderRadius: 5 }
+                style: { padding: '0 16px', fontSize: '.8rem', borderRadius: 5, minHeight: 44, display: 'inline-flex', alignItems: 'center' }
               }, 'Take the GAP Profile')
             )
           )
@@ -340,7 +346,7 @@
                 style: {
                   fontFamily: F.sans,
                   fontSize: '.78rem',
-                  color: 'rgba(245,240,232,.45)',
+                  color: 'rgba(245,240,232,.65)',
                   lineHeight: 1.5
                 }
               }, 'For capable people who are stuck.')
@@ -362,7 +368,7 @@
           e('div', { style: { maxWidth: 620, margin: '20px auto 0', borderTop: '1px solid rgba(245,240,232,.08)', paddingTop: 16 } },
             e('p', {
               style: {
-                color: 'rgba(245,240,232,.4)',
+                color: 'rgba(245,240,232,.65)',
                 fontSize: '.66rem',
                 fontFamily: F.sans
               }
@@ -522,7 +528,7 @@
                     fontSize: '.68rem',
                     letterSpacing: '.08em',
                     textTransform: 'uppercase',
-                    color: 'rgba(245,240,232,.4)',
+                    color: 'rgba(245,240,232,.65)',
                     fontWeight: 600,
                     marginBottom: 16
                   }
@@ -598,14 +604,14 @@
                       alignItems: 'flex-start'
                     }
                   },
-                    e('div', null,
+                    e('div', { style: { minWidth: 0 } },
                       e('div', {
-                        style: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }
+                        style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginBottom: 2 }
                       },
                         e('span', { style: { fontWeight: 600, color: C.ink, fontSize: '.92rem' } }, r.name),
                         r.rec ? e('span', {
                           style: {
-                            background: C.teal,
+                            background: C.navy,
                             color: C.white,
                             fontSize: '.6rem',
                             fontWeight: 700,
@@ -988,4 +994,5 @@
   </script>
 </body>
 </html>
+
 
