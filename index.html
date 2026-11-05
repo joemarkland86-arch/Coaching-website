@@ -585,7 +585,7 @@
               },
                 [
                   { name: 'Archetype Workbook', desc: 'For when you want to do the thinking on your own. Your pattern, your pace, the exercises that fit it.', price: '£9.99', note: 'About an hour, matched to your pattern' },
-                  { name: 'GAP Profile Session', desc: 'For when you\'d rather think it through with someone who\'ll listen properly and ask the question you\'ve been quietly avoiding.', price: '£125', note: '60 minutes, one-to-one, on Zoom', rec: true },
+                  { name: 'GAP Profile Session', desc: 'For when you\'d rather think it through with someone who\'ll listen properly and ask the question you\'ve been quietly avoiding.', price: '£125', note: '60 minutes, one-to-one, on Zoom', href: 'https://calendly.com/joemarkland86/30min?back=1', linkLabel: 'Book a 60-minute session — £125', bookingNote: 'Choose a time, then enter your details and pay £125 through Calendly.', rec: true },
                   { name: 'Six-Week Programme', desc: 'For when one conversation won\'t get you there. Six weeks of proper work on the thing you keep not doing.', price: '£600', note: 'Six sessions over six weeks. Payment plan available' }
                 ].map(function (r, i) {
                   return e('div', {
@@ -617,7 +617,19 @@
                       ),
                       e('span', { style: { color: C.mid, fontSize: '.85rem' } }, r.desc),
                       e('br'),
-                      e('span', { style: { color: C.light, fontSize: '.78rem' } }, r.note)
+                      e('span', { style: { color: C.light, fontSize: '.78rem' } }, r.note),
+                      r.href ? e('a', {
+                        href: r.href,
+                        style: {
+                          display: 'flex', alignItems: 'center', minHeight: 44,
+                          marginTop: 10, color: C.navy, fontSize: '.88rem',
+                          fontWeight: 600, textDecoration: 'underline',
+                          textUnderlineOffset: '3px'
+                        }
+                      }, r.linkLabel) : null,
+                      r.bookingNote ? e('p', {
+                        style: { color: C.mid, fontSize: '.78rem', lineHeight: 1.5, marginTop: 4 }
+                      }, r.bookingNote) : null
                     ),
                     e('span', {
                       style: {
