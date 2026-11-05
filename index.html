@@ -9,10 +9,7 @@
   <meta property="og:description" content="If you already know what you should be doing… what's actually stopping you? Free career assessment — 5 minutes, no sign-up." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://joemarkland.co.uk/" />
-  <meta property="og:image" content="https://joemarkland.co.uk/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
   <link rel="canonical" href="https://joemarkland.co.uk/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1f3d'/%3E%3Ctext x='30' y='44' font-family='Georgia,serif' font-size='36' fill='%23f5f0e8' text-anchor='middle'%3EJ%3C/text%3E%3Ccircle cx='46' cy='42' r='4' fill='%232a9d8f'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -475,25 +472,6 @@
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps }, 'Here\'s something most people don\'t expect about coaching: you already have what you need to work this out.')
             ),
-            e(FadeIn, { delay: 0.04 },
-              e('img', {
-                src: 'joe.jpg',
-                alt: 'Joe Markland, career coach',
-                width: 620,
-                height: 775,
-                loading: 'lazy',
-                style: {
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: 6,
-                  aspectRatio: '4 / 5',
-                  objectFit: 'cover',
-                  maxHeight: 420,
-                  margin: '8px 0 28px',
-                  boxShadow: '14px 14px 0 rgba(42,157,143,.16)'
-                }
-              })
-            ),
             e(FadeIn, { delay: 0.06 },
               e('p', { style: ps }, 'Not in a motivational way. In a literal one. You know your situation, your history, what you\'ve tried, what you actually want, what you\'re avoiding, what scares you, what excites you. Nobody knows any of that better than you do. The bit that\'s hard isn\'t knowing. It\'s hearing yourself think clearly enough to use what you already know.'),
               e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'That\'s what a session is for.'),
@@ -513,10 +491,10 @@
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps }, 'I\'ll be straight about this. The GAP Profile started as a way for people to find me.'),
               e('p', { style: ps }, 'I\'ve trained as a coach and spent years working as a careers adviser at a UK university, sitting with people who knew what they should be doing but weren\'t doing it. That\'s the gap I kept thinking about, and eventually the gap I built the assessment around.'),
-              e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'I wanted something useful that someone could do in five minutes (for free, no sign-up) that would tell them something specific about why they were stuck. If it was helpful and they wanted to talk, they\'d know where to find me. If it was helpful and that was enough on its own, fair enough.'),
+              e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'I wanted something useful that someone could do in five minutes (for free, no sign-up) that would help them reflect on why they felt stuck. If it was helpful and they wanted to talk, they\'d know where to find me. If it was helpful and that was enough on its own, fair enough.'),
               e('p', { style: ps }, 'But I didn\'t want to put out another personality quiz. There\'s plenty of those. So I went looking for what was already known about it.'),
-              e('p', { style: ps }, 'Turned out most of the work had already been done. Just spread across different places, by different people, looking at different angles of the same problem. The GAP Profile pulls it together into one short assessment that works out which angle is most in your way right now. Not forever. Just on this thing, where you are at the moment.'),
-              e('p', { style: ps }, 'It\'s not a personality test. It won\'t tell you what you\'re like. It\'ll tell you what\'s stopping you. Which is a more useful thing to know if you\'re trying to actually move.')
+              e('p', { style: ps }, "The GAP Profile brings together four areas to reflect on: belief in your ability, willingness to take risks, whether a direction feels right for you, and the capacity you have available. Your answers can suggest somewhere useful to start. They cannot tell the whole story."),
+              e('p', { style: ps }, "It is a self-reflection tool, not a diagnosis or a scientifically validated assessment. Use the result as a starting point for your own thinking or a coaching conversation.")
             )
           ),
 
@@ -574,7 +552,7 @@
                     marginTop: 14,
                     marginBottom: 0
                   }
-                }, 'This is one of the four patterns the GAP Profile can reveal. The assessment will tell you which one is most in your way right now.')
+                }, "This is one of four reflection patterns used by GAP Profile. Your answers suggest areas to explore; you decide what fits your situation.")
               )
             ),
             e(FadeIn, null,
@@ -688,6 +666,7 @@
               },
                 e('button', {
                   className: 'qb',
+                  id: 'faq-question-' + i,
                   onClick: function () { setFaqOpen(isOpen ? null : i); },
                   'aria-expanded': isOpen,
                   'aria-controls': 'faq-' + i,
@@ -702,6 +681,8 @@
                 ),
                 e('div', {
                   id: 'faq-' + i,
+                  hidden: !isOpen,
+                  'aria-labelledby': 'faq-question-' + i,
                   role: 'region',
                   className: 'faq-body ' + (isOpen ? 'open' : 'closed')
                 },
@@ -775,27 +756,8 @@
             ),
             e(FadeIn, { delay: 0.1 },
               e('p', { style: ps },
-                'So I built the GAP Profile to measure what\'s actually getting in the way. Not personality, not strengths — the specific thing blocking action. It turns out there are four of them, and most people have one that\'s doing most of the damage.'
+                "So I built the GAP Profile as a starting point for that conversation. It explores four areas that may be relevant to feeling stuck. Your answers can help you reflect on what fits, what does not, and what you want to explore next."
               )
-            ),
-            e(FadeIn, { delay: 0.12 },
-              e('img', {
-                src: 'joe.jpg',
-                alt: 'Joe Markland, career coach',
-                width: 620,
-                height: 775,
-                loading: 'lazy',
-                style: {
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: 6,
-                  aspectRatio: '4 / 5',
-                  objectFit: 'cover',
-                  maxHeight: 420,
-                  margin: '28px 0',
-                  boxShadow: '14px 14px 0 rgba(42,157,143,.16)'
-                }
-              })
             )
           ),
 
@@ -918,12 +880,12 @@
             ),
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps },
-                'The pattern is consistent: capable young people who know roughly what they should be doing, but something specific is getting in the way. It\u2019s not a character flaw. It\u2019s usually one of four identifiable blocks \u2014 and each one has a different fix.'
+                "Someone can be capable and still find it difficult to take their next step. There may be several reasons, including circumstances that a short questionnaire cannot capture. Start by listening to how they describe it."
               )
             ),
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps },
-                'The GAP Profile gives them \u2014 and you \u2014 something concrete to look at instead of another conversation that goes in circles. It\u2019s free, it takes five minutes, and there\u2019s no sign-up. If you\u2019d like to talk about whether coaching would help, drop me an email. No pitch \u2014 just an honest chat about what might be useful.'
+                "The GAP Profile is a free self-reflection tool with no sign-up. It can give them a starting point for thinking about their situation. It is not a diagnosis or a scientifically validated assessment. Let them choose whether to take it and whether to share their results. If you would like to discuss whether coaching could help, you can email me."
               )
             )
           ),
@@ -1014,3 +976,4 @@
   </script>
 </body>
 </html>
+
