@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://joemarkland.co.uk/sitemap.xml

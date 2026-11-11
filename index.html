@@ -1,16 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joe Markland — Career Coaching</title>
-  <meta name="description" content="Career coaching for capable people who feel stuck. Free career assessment — find out what's actually blocking your progress." />
-  <meta property="og:title" content="Joe Markland — Career Coaching" />
-  <meta property="og:description" content="If you already know what you should be doing… what's actually stopping you? Free career assessment — 5 minutes, no sign-up." />
+  <title>Joe Markland | Career coach in Lancashire and online</title>
+  <meta name="description" content="Career coaching for capable people who feel stuck. One-to-one sessions online or in Chorley, Lancashire. Start with a free five-minute career assessment." />
+  <meta property="og:title" content="Joe Markland | Career coach in Lancashire and online" />
+  <meta property="og:description" content="If you already know what you should be doing… what's actually stopping you? Free career assessment. Five minutes, no sign-up." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://joemarkland.co.uk/" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:site_name" content="Joe Markland Career Coaching" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:image" content="https://joemarkland.co.uk/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="If you already know what you should be doing, what's actually stopping you? Joe Markland, career coaching." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://joemarkland.co.uk/og-image.png" />
   <link rel="canonical" href="https://joemarkland.co.uk/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://joemarkland.co.uk/#website",
+        "url": "https://joemarkland.co.uk/",
+        "name": "Joe Markland Career Coaching",
+        "inLanguage": "en-GB"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://joemarkland.co.uk/#joe",
+        "name": "Joe Markland",
+        "jobTitle": "Career coach",
+        "url": "https://joemarkland.co.uk/",
+        "email": "mailto:hello@joemarkland.co.uk",
+        "sameAs": ["https://www.linkedin.com/in/joe-markland-coaching"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Chorley",
+          "addressRegion": "Lancashire",
+          "addressCountry": "GB"
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1f3d'/%3E%3Ctext x='30' y='44' font-family='Georgia,serif' font-size='36' fill='%23f5f0e8' text-anchor='middle'%3EJ%3C/text%3E%3Ccircle cx='46' cy='42' r='4' fill='%232a9d8f'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +59,7 @@
     body { margin: 0; background: #f5f0e8; }
     h1, h2, h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
     ::selection { background: rgba(42,157,143,.18); }
-    a { color: #2a9d8f; }
+    a { color: #1c7268; }
     *:focus-visible { outline: 2px solid #2a9d8f; outline-offset: 2px; }
     .btn-amber {
       display: inline-block;
@@ -182,6 +218,13 @@
 </head>
 <body>
   <div id="root"></div>
+  <noscript>
+    <div style="max-width:620px;margin:0 auto;padding:48px 24px;font-family:Georgia,serif;color:#2c2a25;line-height:1.6">
+      <h1>Joe Markland. Career coaching for capable people who feel stuck.</h1>
+      <p>One-to-one coaching sessions, online or in Chorley, Lancashire. This page needs JavaScript to show in full.</p>
+      <p><a href="https://gapprofile.co.uk">Take the free GAP Profile</a> (about five minutes, no sign-up) or email <a href="mailto:hello@joemarkland.co.uk">hello@joemarkland.co.uk</a>.</p>
+    </div>
+  </noscript>
 
   <script>
     (function () {
@@ -200,6 +243,7 @@
         mid:'#5c5850',
         light:'#6e6960',
         teal:'#2a9d8f',
+        tealText:'#1c7268',
         amber:'#e9a319',
         amberHover:'#d08a10',
         white:'#fff',
@@ -436,7 +480,13 @@
               }, 'Find what\'s actually stopping you'),
               e('p', {
                 style: { color: C.light, fontSize: '.85rem', marginTop: 12, marginBottom: 0 }
-              }, 'Free. No sign-up. About five minutes.')
+              }, 'Free. No sign-up. About five minutes.'),
+              e('div', { className: 'proof-pills' },
+                ['Coaching Diploma, The Coaching Academy', 'Level 6 Career Development Professional', 'DISC Practitioner'].map(function (t, i) {
+                  return e('span', { key: i, className: 'proof-pill' },
+                    e('span', { className: 'pill-dot', 'aria-hidden': 'true' }), t);
+                })
+              )
             )
           ),
 
@@ -464,7 +514,7 @@
             e(FadeIn, null, e('h2', { style: h2s }, 'Why this happens isn\'t usually what people think')),
             e(FadeIn, { delay: 0.05 },
               e('p', { style: ps }, 'There\'s a tab open on your laptop for a job you half-want to apply for. It\'s been open three days. You keep going back to it, reading it again, not applying.'),
-              e('p', { style: ps }, 'It\'s not a thinking problem. You\'ve thought about it. You know roughly what you should be doing. You\'re just not doing it.'),
+              e('p', { style: ps }, 'You\'ve done the thinking. You know roughly what you should be doing. You\'re just not doing it.'),
               e('p', { style: ps }, 'The career advice you\'ve already been given probably isn\'t wrong. It might even be exactly right. But advice, however good, only helps if the thing in the way is not knowing what to do. By the time someone is properly stuck, that usually isn\'t the problem. And then the tab is still open.'),
               e('p', { style: ps }, 'What\'s actually in the way is usually more specific than "mindset" or "confidence." It\'s something particular to you, and it\'s different from the thing that\'s in the way for someone else. Until you know which one it is, more advice is just more noise.')
             )
@@ -482,7 +532,7 @@
               e('p', { style: ps }, 'Not in a motivational way. In a literal one. You know your situation, your history, what you\'ve tried, what you actually want, what you\'re avoiding, what scares you, what excites you. Nobody knows any of that better than you do. The bit that\'s hard isn\'t knowing. It\'s hearing yourself think clearly enough to use what you already know.'),
               e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'That\'s what a session is for.'),
               e('p', { style: ps }, 'We talk. You do the thinking. I listen properly (which is rarer than it sounds) and I notice things. The word you keep coming back to. The thing you mentioned in passing that probably mattered. The pattern in what you\'re describing that you can\'t quite see from where you\'re standing. I\'ll say what I notice. Sometimes a question. Mostly I\'ll just be quiet long enough for you to hear what you\'re actually saying.'),
-              e('p', { style: ps }, 'The ideas you leave with will be yours. Not mine. That\'s not me being modest. It\'s that the ones I might come up with would be designed for someone I\'ve known for an hour. The ones you come up with are designed by the person who has to live with them.'),
+              e('p', { style: ps }, 'The ideas you leave with will be yours. Not mine. I\'m not being modest. The ones I might come up with would be designed for someone I\'ve known for an hour. The ones you come up with are designed by the person who has to live with them.'),
               pullQuote('I won\'t tell you to believe in yourself. I\'ll help you work out what\'s actually in the way.')
             )
           ),
@@ -590,9 +640,9 @@
                 }
               },
                 [
-                  { name: 'Archetype Workbook', desc: 'For when you want to do the thinking on your own. Your pattern, your pace, the exercises that fit it.', price: '£9.99', note: 'About an hour, matched to your pattern' },
-                  { name: 'GAP Profile Session', desc: 'For when you\'d rather think it through with someone who\'ll listen properly and ask the question you\'ve been quietly avoiding.', price: '£125', note: '60 minutes, one-to-one, on Zoom', href: 'https://calendly.com/joemarkland86/30min?back=1', linkLabel: 'Book a 60-minute session — £125', bookingNote: 'Choose a time, then enter your details and pay £125 through Calendly.', rec: true },
-                  { name: 'Six-Week Programme', desc: 'For when one conversation won\'t get you there. Six weeks of proper work on the thing you keep not doing.', price: '£600', note: 'Six sessions over six weeks. Payment plan available' }
+                  { name: 'GAP Profile Workbook', desc: 'For when you want to do the thinking on your own. Your pattern, your pace, the exercises that fit it.', price: '£9.99', note: 'About an hour, matched to your pattern. Offered with your GAP Profile results' },
+                  { name: 'GAP Profile Session', desc: 'For when you\'d rather think it through with someone who\'ll listen properly and ask the question you\'ve been quietly avoiding.', price: '£125', note: '60 minutes, one-to-one, on Zoom', href: 'https://calendly.com/joemarkland86/30min?back=1', linkLabel: 'Book a 60-minute session (£125)', bookingNote: 'Choose a time, then enter your details and pay £125 through Calendly.', rec: true },
+                  { name: 'Six Coaching Sessions', desc: 'For when one conversation won\'t get you there. We agree the focus and the spacing between us, and can revisit the focus as the work develops.', price: '£600', note: 'A £125 session counts as the first of the six', href: 'mailto:hello@joemarkland.co.uk?subject=Six%20coaching%20sessions', linkLabel: 'Ask about six sessions', bookingNote: 'Can be paid as two payments of £300.' }
                 ].map(function (r, i) {
                   return e('div', {
                     key: i,
@@ -712,7 +762,7 @@
                       key: 'pl',
                       href: '#/parents',
                       onClick: function (ev) { ev.preventDefault(); props.setPage('parents'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); },
-                      style: { color: C.teal, fontWeight: 500, textDecoration: 'none' }
+                      style: { color: C.tealText, fontWeight: 500, textDecoration: 'none' }
                     }, 'Read more →')] : null
                   )
                 )
@@ -753,7 +803,7 @@
                   maxWidth: 480,
                   fontWeight: 400
                 }
-              }, 'I\'m Joe Markland. I\'m a career coach for capable people who are stuck at the point where knowing should have turned into doing — but hasn\'t.')
+              }, 'I\'m Joe Markland. I\'m a career coach for capable people who are stuck at the point where knowing should have turned into doing, but hasn\'t.')
             )
           ),
 
@@ -799,7 +849,7 @@
           e('section', { style: Object.assign({}, w, { paddingTop: 0, paddingBottom: 12 }) },
             e(FadeIn, null,
               e('p', { style: ps },
-                'I work best with people who are thoughtful, capable, and already have a fair idea what they should be doing next. You usually don\'t need more ideas. You need to work out what keeps getting in the way — because until that bit becomes clear, it\'s very easy to keep thinking about the same move without actually making it.'
+                'I work best with people who are thoughtful, capable, and already have a fair idea what they should be doing next. You usually don\'t need more ideas. You need to work out what keeps getting in the way, because until that bit becomes clear, it\'s very easy to keep thinking about the same move without actually making it.'
               )
             ),
             e(FadeIn, { delay: 0.05 },
@@ -893,7 +943,7 @@
           e('section', { style: Object.assign({}, w, { paddingTop: 44, paddingBottom: 12 }) },
             e(FadeIn, null,
               e('p', { style: pInk },
-                'Telling them to \u201Cjust get on with it\u201D probably isn\u2019t working. And that\u2019s not because they\u2019re not listening. It\u2019s because the block usually isn\u2019t about motivation.'
+                'Telling them to \u201Cjust get on with it\u201D probably isn\u2019t working. They\u2019re probably listening. The block usually isn\u2019t about motivation.'
               )
             ),
             e(FadeIn, { delay: 0.05 },
@@ -972,6 +1022,7 @@
           if (window.location.hash !== nextHash) {
             window.location.hash = nextHash;
           }
+          document.title = (page === 'about' ? 'About | ' : page === 'parents' ? 'For parents | ' : '') + 'Joe Markland | Career coach in Lancashire and online';
         }, [page]);
 
         return e('div', {
