@@ -518,7 +518,7 @@
         var faqs = [
           { q: 'Do I need to know what I want to do?', a: ["No. You can bring a specific decision or a less tidy sense that something needs to change. We'll agree a useful focus for the conversation together."] },
           { q: 'Do I have to complete the GAP Profile?', a: ["No. It's an optional way to reflect before we speak. You can book coaching directly."] },
-          { q: 'Do I need six sessions?', a: ['You can start with one and decide afterwards. If you want to continue, your £125 session counts as the first of the six.'] },
+          { q: 'Do I need six sessions?', a: ['You can start with one and decide afterwards. If you continue, your £125 session counts as the first of the six, so the remaining five are £475. There\'s no deadline for deciding.'] },
           { q: 'Can I ask a question before booking?', a: ['Of course. Email ', e('a', { key: 'm', href: MAIL }, 'hello@joemarkland.co.uk'), " with what you'd like to know, including questions about availability or changing an appointment."] },
           { q: "I'm looking for support for my son or daughter.", a: ["You're welcome to get in touch. The person having coaching needs to want to take part, and we can discuss how you can support them while giving them space to make their own decisions. I've also written ", e('a', { key: 'p', href: '#/parents', onClick: toPage('parents') }, 'a page for parents'), '.'] },
           { q: 'Is coaching the right kind of support?', a: ["My coaching focuses on career decisions, goals and action. It doesn't provide mental health treatment. If your needs sit outside my experience or scope, I'll be open about that."] }
@@ -582,7 +582,7 @@
               e('div', null,
                 eyebrow('How I coach'),
                 e('h2', null, 'You do the thinking.', e('br'), e('em', null, 'I listen properly.')),
-                e('p', null, "Listening properly is rarer than it sounds. You know your situation better than I do. I'll notice the word you keep coming back to, or the thing you mentioned in passing that probably mattered."),
+                e('p', null, "You know your situation better than I do. I'll notice the word you keep coming back to, or the thing you mentioned in passing that probably mattered."),
                 e('div', { className: 'quote' }, "“I'll say what I notice. You get to decide what fits.”")
               ),
               e('div', { className: 'steps' },
@@ -622,7 +622,7 @@
               e('article', { className: 'offer' },
                 e('div', { className: 'offer-top' }, e('span', null, 'Space to try, reflect and adjust'), e('span', null, '02')),
                 e('h3', null, 'Six coaching sessions'),
-                e('div', { className: 'price' }, '£600', e('small', null, 'Two payments of £300 available')),
+                e('div', { className: 'price' }, '£600', e('small', null, 'In full, or two payments of £300')),
                 e('p', null, 'For something you want to work on over time, with space between conversations to put your thinking into practice.'),
                 e('ul', null,
                   e('li', null, 'Agree the focus and spacing together'),
@@ -630,7 +630,7 @@
                   e('li', null, 'Adjust the approach as you learn')
                 ),
                 e('a', { className: 'btn', href: MAIL + '?subject=Six%20coaching%20sessions' }, 'Ask about six sessions ', arrow()),
-                e('p', { className: 'offer-note' }, 'Already had a £125 session? It counts as the first of the six.')
+                e('p', { className: 'offer-note' }, 'Already had a £125 session? It counts as the first of the six, so the remaining five are £475.')
               )
             ),
             e('div', { className: 'booking-note' },
@@ -750,7 +750,7 @@
           e('section', { style: Object.assign({}, w, { paddingTop: 0, paddingBottom: 12 }) },
             e(FadeIn, null,
               e('p', { style: ps },
-                'I work best with people who are thoughtful, capable, and already have a fair idea what they should be doing next. You usually don\'t need more ideas. You need to work out what keeps getting in the way, because until that bit becomes clear, it\'s very easy to keep thinking about the same move without actually making it.'
+                'I work best with people who are thoughtful and capable. Some already have a fair idea what they should be doing next. Others only know that something needs to change. Either way, you usually don\'t need more ideas. You need to work out what keeps getting in the way, because until that bit becomes clear, it\'s very easy to keep thinking about the same move without actually making it.'
               )
             ),
             e(FadeIn, { delay: 0.05 },
@@ -770,7 +770,7 @@
             ),
             e(FadeIn, { delay: 0.12 },
               e('p', { style: pInk },
-                'My aim is for you to not need me. If we\'re still having regular sessions six months from now, I\'ve probably not done my job properly.'
+                'My aim is for you to not need me.'
               )
             )
           ),
@@ -796,13 +796,20 @@
                   }
                 }, 'Not sure where to start?'),
                 e('p', { style: Object.assign({}, ps, { marginBottom: 22, fontSize: 'clamp(0.9rem, 2vw, 0.98rem)' }) },
-                  'The best place to start is the GAP Profile. It gives us something concrete to work from, quickly. If the results feel accurate and you want help acting on them, that\'s where coaching comes in.'
+                  'You can take the free GAP Profile on your own, as a way to reflect before deciding anything. Or you can get in touch about coaching directly. You don\'t need to do one before the other.'
                 ),
                 e('a', {
                   href: GAP,
                   className: 'btn-amber',
                   style: { padding: '13px 26px', fontSize: '.9rem' }
-                }, 'Take the free GAP Profile')
+                }, 'Take the free GAP Profile'),
+                e('p', { style: { color: C.light, fontSize: '.8rem', marginTop: 14, marginBottom: 0 } },
+                  'Or email me about coaching: ',
+                  e('a', {
+                    href: 'mailto:hello@joemarkland.co.uk?subject=Enquiry%20about%20a%201%3A1%20session',
+                    style: { color: C.light, textDecoration: 'underline' }
+                  }, 'hello@joemarkland.co.uk')
+                )
               )
             )
           )
@@ -879,15 +886,16 @@
                   }
                 }, 'Want to find out if coaching would help?'),
                 e('p', { style: Object.assign({}, ps, { marginBottom: 22, fontSize: 'clamp(0.9rem, 2vw, 0.98rem)' }) },
-                  'The GAP Profile is the best place to start. It\u2019s free, takes five minutes, and it\u2019ll give you both something concrete to look at.'
+                  'Email me and we can talk about whether coaching might suit them. If they\u2019d like somewhere to begin on their own, the GAP Profile is free and takes about five minutes. Whether they take it, and whether they share the results, is up to them.'
                 ),
-                e('a', { href: GAP, className: 'btn-amber', style: { padding: '12px 22px', fontSize: '.9rem' } }, 'Take the free GAP Profile'),
+                e('a', { href: 'mailto:hello@joemarkland.co.uk?subject=Coaching%20enquiry%20from%20a%20parent%20or%20supporter', className: 'btn-amber', style: { padding: '12px 22px', fontSize: '.9rem' } }, 'Email me about coaching'),
                 e('p', { style: { color: C.light, fontSize: '.8rem', marginTop: 14, marginBottom: 0 } },
-                  'Or email me: ',
+                  'Or pass on the free ',
                   e('a', {
-                    href: 'mailto:hello@joemarkland.co.uk',
+                    href: GAP,
                     style: { color: C.light, textDecoration: 'underline' }
-                  }, 'hello@joemarkland.co.uk')
+                  }, 'GAP Profile'),
+                  ' for them to try.'
                 )
               )
             )
