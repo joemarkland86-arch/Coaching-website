@@ -55,7 +55,7 @@
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
     body { margin: 0; background: #f5f0e8; }
     h1, h2, h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
     ::selection { background: rgba(42,157,143,.18); }
@@ -73,35 +73,6 @@
     }
     .btn-amber:hover { background: #d08a10; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(233,163,25,.3); }
     .btn-amber:active { transform: translateY(0); }
-    .qb {
-      width: 100%;
-      padding: 18px 0;
-      background: none;
-      border: none;
-      border-top: 1px solid #ebe4d8;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .95rem;
-      font-weight: 600;
-      color: #2c2a25;
-      text-align: left;
-      line-height: 1.4;
-    }
-    .qb:hover { color: #2a9d8f; }
-    .faq-body { overflow: hidden; transition: max-height .35s ease, opacity .25s ease; }
-    .faq-body.closed { max-height: 0; opacity: 0; }
-    .faq-body.open { max-height: 600px; opacity: 1; }
-    .faq-icon {
-      color: #2a9d8f;
-      font-size: 1.1rem;
-      margin-left: 12px;
-      flex-shrink: 0;
-      transition: transform .2s ease;
-      line-height: 1;
-    }
     .footer-link {
       color: rgba(245,240,232,.58);
       text-decoration: none;
@@ -111,66 +82,65 @@
       margin-bottom: 6px;
     }
     .footer-link:hover { color: #2a9d8f; }
+    .skip-link { position: absolute; top: -80px; left: 16px; z-index: 60; background: #1a1f3d; color: #fff; padding: 14px 18px; font: 600 15px 'DM Sans', sans-serif; }
+    .skip-link:focus { top: 10px; }
     .site-header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(26,31,61,.96);
+      background: rgba(245,240,232,.96);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(245,240,232,.06);
+      border-bottom: 1px solid #d9d2c6;
     }
     .site-header .nav-inner {
-      max-width: 620px;
+      max-width: 1240px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 48px;
+      height: 76px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      min-height: 56px;
+      gap: 24px;
     }
     .site-header .brand-link {
       text-decoration: none;
+      color: #2c2a25;
+      font: 600 21px/1.2 'DM Sans', sans-serif;
+      letter-spacing: -.6px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       min-height: 44px;
-      line-height: 1.15;
-    }
-    @media (max-width: 480px) {
-      .site-header .nav-inner { flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; gap: 4px; }
-      .site-header .nav-right { width: 100%; justify-content: space-between; }
-    }
-    .site-header .brand-name {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 1.08rem;
-      color: rgba(245,240,232,.92);
     }
     .site-header .brand-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-size: .62rem;
-      color: rgba(245,240,232,.65);
-      letter-spacing: .04em;
+      font-size: 11px;
+      letter-spacing: 2.1px;
+      text-transform: uppercase;
+      font-weight: 500;
     }
-    .site-header .brand-dot { color: #2a9d8f; }
     .site-header .nav-right {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 28px;
     }
     .nav-text-link {
-      font-family: 'DM Sans', sans-serif;
-      font-size: .82rem;
-      color: rgba(245,240,232,.58);
+      font: 500 15px 'DM Sans', sans-serif;
+      color: #2c2a25;
       text-decoration: none;
-      font-weight: 500;
-      transition: color .2s ease;
       min-height: 44px;
       display: inline-flex;
       align-items: center;
     }
     .nav-text-link:hover,
-    .nav-text-link.active { color: rgba(245,240,232,.98); }
+    .nav-text-link.active { color: #1c7268; }
+    .nav-text-link.navcta { font-weight: 600; text-decoration: underline; text-underline-offset: 6px; }
+    @media (max-width: 800px) {
+      .site-header .nav-inner { padding: 0 23px; height: 68px; }
+      .site-header .nav-right { gap: 18px; }
+      .site-header .brand-link { font-size: 19px; }
+      .nav-text-link.optional { display: none; }
+    }
     .proof-pills {
       display: flex;
       flex-wrap: wrap;
@@ -200,6 +170,117 @@
       margin-right: 8px;
       flex-shrink: 0;
     }
+    .jm { --sand: #f5f0e8; --ink: #2c2a25; --navy: #1a1f3d; --teal: #237a70; --amber: #e9a319; --line: #d9d2c6; --mid: #57534b; background: var(--sand); color: var(--ink); font: 17px/1.65 'DM Sans', Arial, sans-serif; }
+    .jm a { color: inherit; }
+    .jm :focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+    .jm .dark :focus-visible { outline-color: var(--amber); }
+    .jm .wrap { max-width: 1240px; margin: 0 auto; padding-left: 48px; padding-right: 48px; }
+    .jm p { margin: 0 0 1em; }
+    .jm h1, .jm h2, .jm h3 { line-height: 1.06; }
+    .jm h1 { font-size: clamp(46px, 5.4vw, 76px); letter-spacing: -1.6px; margin: 28px 0; }
+    .jm h2 { font-size: clamp(40px, 4.7vw, 62px); letter-spacing: -1px; margin: 20px 0; }
+    .jm h3 { font-size: 32px; margin: 0 0 1em; }
+    .jm em { font-weight: 400; color: var(--teal); }
+    .jm .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 600; display: flex; gap: 12px; align-items: center; }
+    .jm .eyebrow::before { content: ''; height: 7px; width: 7px; flex-shrink: 0; background: var(--teal); border-radius: 50%; }
+    .jm .hero { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; padding-top: 70px; padding-bottom: 80px; }
+    .jm .lead { max-width: 500px; font-size: 19px; line-height: 1.7; color: var(--mid); margin-bottom: 1.4em; }
+    .jm .btn { display: inline-flex; gap: 28px; align-items: center; justify-content: space-between; text-decoration: none; padding: 16px 24px; min-height: 54px; background: var(--navy); color: #fff; border: 1px solid var(--navy); font-size: 16px; font-weight: 600; transition: transform .2s, background .2s; }
+    .jm .btn:hover { transform: translateY(-3px); background: #303858; }
+    .jm .btn.amber { background: var(--amber); color: var(--navy); border-color: var(--amber); }
+    .jm .btn.amber:hover { background: #f0b23a; }
+    .jm .under { font-size: 15px; color: var(--mid); margin: 16px 0 0; }
+    .jm .hero-art { height: 510px; background: #eae4d8; position: relative; overflow: hidden; border-radius: 180px 180px 4px 4px; border: 1px solid #ded5c4; display: flex; flex-direction: column; justify-content: center; padding: 45px; }
+    .jm .hero-art::before { content: ''; position: absolute; inset: 18px; border: 1px solid rgba(199,189,169,.45); border-radius: 170px 170px 0 0; }
+    .jm .art-word { font: italic 65px 'Instrument Serif', serif; color: var(--navy); position: relative; z-index: 2; text-shadow: 0 3px 14px #eae4d8; }
+    .jm .art-word.second { text-align: right; margin-top: 110px; }
+    .jm .art-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .jm .art-draw { stroke-dasharray: 900; stroke-dashoffset: 900; animation: jmdraw 2.6s ease forwards; }
+    @keyframes jmdraw { to { stroke-dashoffset: 0; } }
+    .jm .art-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; position: absolute; left: 38px; bottom: 27px; }
+    .jm .stripe { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; }
+    .jm .credentials { display: flex; justify-content: space-between; gap: 25px; font-size: 14px; color: var(--mid); }
+    .jm .credentials strong { color: var(--ink); font-weight: 500; }
+    .jm .section { padding-top: 100px; padding-bottom: 100px; }
+    .jm .section-head { display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; margin-bottom: 42px; }
+    .jm .section-head p { align-self: end; color: var(--mid); max-width: 480px; }
+    .jm .moments { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .jm .moment { padding: 32px 30px 30px 0; }
+    .jm .moment + .moment { border-left: 1px solid var(--line); padding-left: 30px; }
+    .jm .num { font: italic 24px 'Instrument Serif', serif; color: var(--teal); display: block; margin-bottom: 26px; }
+    .jm .moment p { font-size: 16px; color: var(--mid); margin-bottom: 0; }
+    .jm .dark { background: var(--navy); color: var(--sand); }
+    .jm .dark em { color: #8bc7b6; }
+    .jm .dark .eyebrow::before { background: var(--amber); }
+    .jm .method { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+    .jm .method p { color: #cfd0d9; }
+    .jm .steps { margin-top: 20px; }
+    .jm .step { display: grid; grid-template-columns: 35px 1fr; gap: 15px; padding: 22px 0; border-bottom: 1px solid #41455e; }
+    .jm .step:first-child { border-top: 1px solid #41455e; }
+    .jm .step > span { font: italic 22px 'Instrument Serif', serif; color: #8bc7b6; }
+    .jm .step h3 { font-size: 28px; margin-bottom: 8px; }
+    .jm .step p { margin: 0; font-size: 16px; }
+    .jm .quote { border-left: 2px solid var(--amber); padding-left: 23px; margin-top: 40px; font: italic 29px/1.35 'Instrument Serif', serif; }
+    .jm .offers { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .jm .offer { background: #fffaf2; border: 1px solid var(--line); padding: 38px; display: flex; flex-direction: column; }
+    .jm .offer.featured { background: #e8ece4; border-color: #cbd6c9; }
+    .jm .offer-top { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; }
+    .jm .price { font: 57px 'Instrument Serif', serif; margin: 24px 0 8px; }
+    .jm .price small { font: 14px 'DM Sans', sans-serif; margin-left: 10px; color: var(--mid); }
+    .jm .offer h3 { margin: 12px 0; }
+    .jm .offer p { font-size: 16px; color: var(--mid); }
+    .jm .offer ul { list-style: none; margin: 5px 0 30px; font-size: 15px; }
+    .jm .offer li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .jm .offer li::before { content: '\2192'; margin-right: 12px; color: var(--teal); }
+    .jm .offer .btn { margin-top: auto; }
+    .jm .offer .offer-note { font-size: 14px; margin: 18px 0 0; }
+    .jm .booking-note { display: grid; grid-template-columns: .7fr 1.6fr .8fr; gap: 24px; align-items: start; border-bottom: 1px solid var(--line); padding: 27px 0; }
+    .jm .booking-note p { font-size: 15px; margin: 0; color: var(--mid); }
+    .jm .booking-note a { font-size: 14px; text-underline-offset: 4px; }
+    .jm .gap-box { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding-top: 48px; margin-top: 20px; }
+    .jm .gap-box h3 { font-size: 36px; margin-top: 18px; }
+    .jm .gap-box p { font-size: 16px; color: var(--mid); }
+    .jm .gap-box .fine { font-size: 14px; margin: 20px 0 0; }
+    .jm .textlink { text-underline-offset: 6px; font-size: 16px; font-weight: 600; }
+    .jm .about { background: #e9e2d5; }
+    .jm .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; align-items: center; }
+    .jm .monogram { aspect-ratio: 1; background: #23695f; color: var(--sand); border-radius: 50% 50% 0 0; display: flex; align-items: center; justify-content: center; position: relative; font: italic 150px 'Instrument Serif', serif; }
+    .jm .monogram small { position: absolute; bottom: 33px; font: 11px 'DM Sans', sans-serif; letter-spacing: 2px; text-transform: uppercase; }
+    .jm .about p { color: var(--mid); }
+    .jm .faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; }
+    .jm details { border-bottom: 1px solid var(--line); padding: 21px 0; }
+    .jm summary { cursor: pointer; list-style: none; font-size: 17px; font-weight: 500; display: flex; justify-content: space-between; gap: 20px; }
+    .jm summary::-webkit-details-marker { display: none; }
+    .jm summary::after { content: '+'; font-size: 22px; line-height: 1; }
+    .jm details[open] summary::after { content: '\2212'; }
+    .jm details p { font-size: 16px; color: var(--mid); margin: 18px 30px 0 0; }
+    .jm .closing { text-align: center; padding: 85px 24px; }
+    .jm .closing h2 { font-size: clamp(44px, 6vw, 78px); max-width: 780px; margin: 0 auto 30px; }
+    .jm .closing p { color: #cfd0d9; font-size: 16px; margin: 20px auto 0; }
+    @media (max-width: 800px) {
+      .jm .wrap { padding-left: 23px; padding-right: 23px; }
+      .jm .hero { grid-template-columns: 1fr; padding-top: 34px; padding-bottom: 45px; gap: 35px; }
+      .jm h1 { font-size: clamp(40px, 11vw, 52px); letter-spacing: -1px; margin: 22px 0; }
+      .jm .lead { font-size: 18px; }
+      .jm .hero-art { height: 320px; border-radius: 140px 140px 3px 3px; max-width: 490px; width: 100%; margin: 0 auto; }
+      .jm .hero-art::before { border-radius: 125px 125px 0 0; }
+      .jm .art-word { font-size: 52px; }
+      .jm .art-word.second { margin-top: 70px; }
+      .jm .credentials { flex-wrap: wrap; gap: 8px 25px; }
+      .jm .section { padding-top: 62px; padding-bottom: 62px; }
+      .jm .section-head, .jm .method, .jm .about-grid, .jm .faq, .jm .gap-box, .jm .booking-note { grid-template-columns: 1fr; gap: 22px; }
+      .jm .section-head { margin-bottom: 20px; }
+      .jm .moments { grid-template-columns: 1fr; }
+      .jm .moment, .jm .moment + .moment { padding: 24px 0; border-left: 0; }
+      .jm .moment + .moment { border-top: 1px solid var(--line); }
+      .jm .num { margin-bottom: 12px; }
+      .jm .moment h3 { margin-bottom: 10px; }
+      .jm .offers { grid-template-columns: 1fr; }
+      .jm .offer { padding: 28px; }
+      .jm .monogram { max-width: 300px; width: 100%; font-size: 120px; }
+      .jm .about-grid { gap: 36px; }
+      .jm .closing { padding: 65px 23px; }
+    }
     body::after {
       content: '';
       position: fixed;
@@ -212,7 +293,9 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .btn-amber, .faq-body, .faq-icon { transition: none; }
+      html { scroll-behavior: auto; }
+      .btn-amber, .jm .btn { transition: none; }
+      .jm .art-draw { animation: none; stroke-dashoffset: 0; }
     }
   </style>
 </head>
@@ -258,14 +341,6 @@
 
       var GAP = 'https://gapprofile.co.uk';
       var w = { maxWidth: 620, margin: '0 auto', padding: '0 24px' };
-      var h2s = {
-        fontFamily: F.serif,
-        fontSize: 'clamp(1.6rem, 3vw, 1.9rem)',
-        lineHeight: 1.25,
-        color: C.ink,
-        marginBottom: 18,
-        fontWeight: 400
-      };
       var ps = {
         color: C.mid,
         marginBottom: 20,
@@ -318,38 +393,31 @@
         }, props.children);
       }
 
-      function Divider() {
-        return e('div', { style: Object.assign({}, w) },
-          e('div', { style: { position: 'relative', borderTop: '1px solid ' + C.sandDk } },
-            e('span', { 'aria-hidden': 'true', style: { position: 'absolute', top: -3.5, left: '50%', marginLeft: -3, width: 6, height: 6, borderRadius: '50%', background: C.teal, opacity: .5 } })
-          )
-        );
-      }
-
       function Nav(props) {
+        var toPage = function (p) {
+          return function (ev) { ev.preventDefault(); props.setPage(p); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); };
+        };
+        var toSection = function (id) {
+          return function (ev) {
+            ev.preventDefault();
+            props.setPage('home');
+            setTimeout(function () {
+              var el = document.getElementById(id);
+              if (el) el.scrollIntoView();
+            }, 80);
+          };
+        };
         return e('header', { className: 'site-header' },
           e('div', { className: 'nav-inner' },
-            e('a', {
-              href: '#/',
-              className: 'brand-link',
-              onClick: function (ev) { ev.preventDefault(); props.setPage('home'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
-            },
-              e('span', { className: 'brand-name' },
-                'Joe Markland', e('span', { className: 'brand-dot' }, '.')
-              ),
-              e('span', { className: 'brand-sub' }, 'Career Coaching')
+            e('a', { href: '#/', className: 'brand-link', onClick: toPage('home') },
+              'Joe Markland',
+              e('span', { className: 'brand-sub' }, 'Career coaching')
             ),
-            e('div', { className: 'nav-right' },
-              e('a', {
-                href: '#/about',
-                className: 'nav-text-link' + (props.page === 'about' ? ' active' : ''),
-                onClick: function (ev) { ev.preventDefault(); props.setPage('about'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
-              }, 'About'),
-              e('a', {
-                href: GAP,
-                className: 'btn-amber',
-                style: { padding: '0 16px', fontSize: '.8rem', borderRadius: 5, minHeight: 44, display: 'inline-flex', alignItems: 'center' }
-              }, 'Take the GAP Profile')
+            e('nav', { className: 'nav-right', 'aria-label': 'Main' },
+              e('a', { href: '#/', className: 'nav-text-link optional', onClick: toSection('approach') }, 'My approach'),
+              e('a', { href: '#/about', className: 'nav-text-link' + (props.page === 'about' ? ' active' : ''), onClick: toPage('about') }, 'About'),
+              e('a', { href: '#/parents', className: 'nav-text-link optional' + (props.page === 'parents' ? ' active' : ''), onClick: toPage('parents') }, 'For parents'),
+              e('a', { href: '#/', className: 'nav-text-link navcta', onClick: toSection('sessions') }, 'Work with me')
             )
           )
         );
@@ -369,7 +437,7 @@
         return e('footer', { style: { background: C.navy, padding: '48px 24px 28px' } },
           e('div', {
             style: {
-              maxWidth: 620,
+              maxWidth: props.wide ? 1144 : 620,
               margin: '0 auto',
               display: 'flex',
               flexWrap: 'wrap',
@@ -409,7 +477,7 @@
               e('a', { href: 'mailto:hello@joemarkland.co.uk?subject=Enquiry%20about%20a%201%3A1%20session', className: 'footer-link' }, 'Ask about a 1:1 session')
             )
           ),
-          e('div', { style: { maxWidth: 620, margin: '20px auto 0', borderTop: '1px solid rgba(245,240,232,.08)', paddingTop: 16 } },
+          e('div', { style: { maxWidth: props.wide ? 1144 : 620, margin: '20px auto 0', borderTop: '1px solid rgba(245,240,232,.08)', paddingTop: 16 } },
             e('p', {
               style: {
                 color: 'rgba(245,240,232,.65)',
@@ -422,373 +490,206 @@
       }
 
       function HomePage(props) {
-        var faqState = useState(null);
-        var faqOpen = faqState[0];
-        var setFaqOpen = faqState[1];
-
-        var pullQuote = function (text) {
-          return e('div', {
-            style: {
-              paddingLeft: 16,
-              borderLeft: '3px solid ' + C.teal,
-              marginTop: 8,
-              marginBottom: 0
-            }
-          },
-            e('p', {
-              style: {
-                fontFamily: F.serif,
-                fontStyle: 'italic',
-                fontSize: '1.15rem',
-                lineHeight: 1.5,
-                color: C.ink,
-                margin: 0
-              }
-            }, text)
-          );
+        var CAL = 'https://calendly.com/joemarkland86/30min';
+        var MAIL = 'mailto:hello@joemarkland.co.uk';
+        var toSection = function (id) {
+          return function (ev) {
+            ev.preventDefault();
+            var el = document.getElementById(id);
+            if (el) el.scrollIntoView();
+          };
         };
+        var toPage = function (p) {
+          return function (ev) { ev.preventDefault(); props.setPage(p); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); };
+        };
+        var arrow = function () { return e('span', { 'aria-hidden': 'true' }, '→'); };
+        var eyebrow = function (t) { return e('div', { className: 'eyebrow' }, t); };
 
-        return e('main', null,
+        var moments = [
+          { n: '01 / The job that stuck', q: ['“It was only meant', 'to be temporary.”'], p: "Now it's the default. You're not sure you want to stay, but leaving opens up questions you haven't answered." },
+          { n: '02 / The open tab', q: ['“I keep looking.', 'I never apply.”'], p: "You've read the job advert enough times to know it by heart. Something happens between wanting it and pressing send." },
+          { n: '03 / Everyone else', q: ["“I thought I'd be", 'further on by now.”'], p: "Other people seem to have a plan. You're trying to work out what you actually want, underneath all the comparison." }
+        ];
+        var steps = [
+          { t: 'Work out what matters today.', p: "We agree what you want from the conversation. One decision, a difficult next step, or some room to untangle what's going on." },
+          { t: "Look at what's in the way.", p: "We look at the assumptions, concerns and practical constraints around it. I'll ask questions and offer observations for you to consider." },
+          { t: 'Find a next step that fits.', p: 'We work towards something useful you can take away: a decision to explore, a conversation to have, or a manageable action to try.' }
+        ];
+        var faqs = [
+          { q: 'Do I need to know what I want to do?', a: ["No. You can bring a specific decision or a less tidy sense that something needs to change. We'll agree a useful focus for the conversation together."] },
+          { q: 'Do I have to complete the GAP Profile?', a: ["No. It's an optional way to reflect before we speak. You can book coaching directly."] },
+          { q: 'Do I need six sessions?', a: ['You can start with one and decide afterwards. If you want to continue, your £125 session counts as the first of the six.'] },
+          { q: 'Can I ask a question before booking?', a: ['Of course. Email ', e('a', { key: 'm', href: MAIL }, 'hello@joemarkland.co.uk'), " with what you'd like to know, including questions about availability or changing an appointment."] },
+          { q: "I'm looking for support for my son or daughter.", a: ["You're welcome to get in touch. The person having coaching needs to want to take part, and we can discuss how you can support them while giving them space to make their own decisions. I've also written ", e('a', { key: 'p', href: '#/parents', onClick: toPage('parents') }, 'a page for parents'), '.'] },
+          { q: 'Is coaching the right kind of support?', a: ["My coaching focuses on career decisions, goals and action. It doesn't provide mental health treatment. If your needs sit outside my experience or scope, I'll be open about that."] }
+        ];
 
-          /* ── Section 1: Hero ── */
-          e('section', { style: Object.assign({}, w, { paddingTop: 72, paddingBottom: 56 }) },
-            e(FadeIn, null,
-              e('h1', {
-                style: {
-                  fontSize: 'clamp(2.2rem, 5.5vw, 3.1rem)',
-                  lineHeight: 1.15,
-                  letterSpacing: '-0.02em',
-                  color: C.ink,
-                  marginBottom: 24,
-                  fontFamily: F.serif,
-                  fontWeight: 400
-                }
-              },
-                'If you already know what you should be doing…',
-                e('br'),
-                e('span', { style: { color: C.teal, fontStyle: 'italic' } }, 'what\'s actually stopping you?')
-              )
+        return e('main', { className: 'jm' },
+
+          /* ── Hero ── */
+          e('section', { className: 'wrap hero' },
+            e('div', null,
+              eyebrow('Chorley, Lancashire · Online across the UK'),
+              e('h1', null, 'If you already know what you should be doing… ', e('em', null, "what's actually stopping you?")),
+              e('p', { className: 'lead' }, "I'm Joe. I help capable people think through what's getting in the way of their next career move, and work out what to do about it."),
+              e('a', { className: 'btn amber', href: GAP }, 'Take the free GAP Profile ', arrow()),
+              e('p', { className: 'under' }, 'Five minutes, no sign-up. Or ', e('a', { href: '#/', onClick: toSection('sessions') }, 'explore coaching with me'), '.')
             ),
-            e(FadeIn, { delay: 0.06 },
-              e('p', { style: Object.assign({}, ps, { marginBottom: 28 }) },
-                'If you keep applying for things you don\'t want, telling family "I\'m figuring it out," and wondering if you\'ve fallen behind, this is for you. I\'m Joe. I\'m a coach who works mainly with graduates and people early in their careers, on the gap between knowing what you should be doing and actually doing it.'
+            e('div', { className: 'hero-art', 'aria-hidden': 'true' },
+              e('div', { className: 'art-word' }, 'Thinking.'),
+              e('svg', { className: 'art-svg', viewBox: '0 0 500 510', fill: 'none' },
+                e('path', { d: 'M60 190C220 90 390 150 320 245C270 310 100 300 140 230C185 150 400 240 340 330C300 395 210 370 250 310C280 270 380 320 420 375', stroke: '#c7bda9', strokeWidth: 2 }),
+                e('path', { className: 'art-draw', d: 'M60 190C220 90 390 150 320 245C270 310 100 300 140 230C185 150 400 240 340 330', stroke: '#237a70', strokeWidth: 3 }),
+                e('circle', { cx: 60, cy: 190, r: 7, fill: '#237a70' }),
+                e('path', { d: 'M340 330L420 375M402 349L420 375L389 376', stroke: '#b77d0d', strokeWidth: 3 })
               ),
-              e('a', {
-                href: GAP,
-                className: 'btn-amber',
-                style: { padding: '14px 28px', fontSize: '.95rem' }
-              }, 'Find what\'s actually stopping you'),
-              e('p', {
-                style: { color: C.light, fontSize: '.85rem', marginTop: 12, marginBottom: 0 }
-              }, 'Free. No sign-up. About five minutes.'),
-              e('div', { className: 'proof-pills' },
-                ['Coaching Diploma, The Coaching Academy', 'Level 6 Career Development Professional', 'DISC Practitioner'].map(function (t, i) {
-                  return e('span', { key: i, className: 'proof-pill' },
-                    e('span', { className: 'pill-dot', 'aria-hidden': 'true' }), t);
-                })
-              )
+              e('div', { className: 'art-word second' }, 'Doing.'),
+              e('span', { className: 'art-label' }, 'The bit in between')
             )
           ),
 
-          e(Divider),
-
-          /* ── Section 2: This tends to be for you if… ── */
-          e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
-            e(FadeIn, null, e('h2', { style: h2s }, 'This tends to be for you if…')),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You\'ve got a degree, maybe some work experience, and on paper things look fine. The problem isn\'t on paper.'),
-              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You know roughly what you should be doing. Updating the CV. Applying for the thing. Having the conversation. But when you sit down to do it, something else happens instead.'),
-              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You\'re in a job that was meant to be temporary and has quietly become the default.'),
-              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You keep applying for roles you don\'t really want, because at least it feels like doing something.'),
-              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You\'ve started to compare yourself to people you were at uni with, and the comparison isn\'t going well.'),
-              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'Someone at a family lunch asked what the plan was, and you didn\'t have a good answer.'),
-              e('p', { style: Object.assign({}, ps, { lineHeight: 1.5, marginBottom: 28 }) }, 'You\'ve read the articles. You\'ve watched the videos. More advice isn\'t the thing that\'s missing.'),
-              e('p', { style: Object.assign({}, pInk, { marginTop: 8 }) }, 'If two or three of those landed, you\'re in the right place.')
+          e('div', { className: 'stripe' },
+            e('div', { className: 'wrap credentials' },
+              e('strong', null, 'Career coaching, with room to think.'),
+              e('span', null, 'The Coaching Academy · Diploma with distinction'),
+              e('span', null, 'Level 6 Career Development Professional')
             )
           ),
 
-          e(Divider),
-
-          /* ── Section 3: Why this happens isn't usually what people think ── */
-          e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
-            e(FadeIn, null, e('h2', { style: h2s }, 'Why this happens isn\'t usually what people think')),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps }, 'There\'s a tab open on your laptop for a job you half-want to apply for. It\'s been open three days. You keep going back to it, reading it again, not applying.'),
-              e('p', { style: ps }, 'You\'ve done the thinking. You know roughly what you should be doing. You\'re just not doing it.'),
-              e('p', { style: ps }, 'The career advice you\'ve already been given probably isn\'t wrong. It might even be exactly right. But advice, however good, only helps if the thing in the way is not knowing what to do. By the time someone is properly stuck, that usually isn\'t the problem. And then the tab is still open.'),
-              e('p', { style: ps }, 'What\'s actually in the way is usually more specific than "mindset" or "confidence." It\'s something particular to you, and it\'s different from the thing that\'s in the way for someone else. Until you know which one it is, more advice is just more noise.')
-            )
-          ),
-
-          e(Divider),
-
-          /* ── Section 4: How I coach ── */
-          e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
-            e(FadeIn, null, e('h2', { style: h2s }, 'How I coach')),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps }, 'Here\'s something most people don\'t expect about coaching: you already have what you need to work this out.')
+          /* ── Sound familiar? ── */
+          e('section', { className: 'wrap section' },
+            e('div', { className: 'section-head' },
+              e('div', null,
+                eyebrow('Sound familiar?'),
+                e('h2', null, 'On paper, things are fine.', e('br'), e('em', null, "But you're the one living it."))
+              ),
+              e('p', null, "You don't need to have your whole career worked out before we talk. These are some of the places we might start.")
             ),
-            e(FadeIn, { delay: 0.06 },
-              e('p', { style: ps }, 'Not in a motivational way. In a literal one. You know your situation, your history, what you\'ve tried, what you actually want, what you\'re avoiding, what scares you, what excites you. Nobody knows any of that better than you do. The bit that\'s hard isn\'t knowing. It\'s hearing yourself think clearly enough to use what you already know.'),
-              e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'That\'s what a session is for.'),
-              e('p', { style: ps }, 'We talk. You do the thinking. I listen properly (which is rarer than it sounds) and I notice things. The word you keep coming back to. The thing you mentioned in passing that probably mattered. The pattern in what you\'re describing that you can\'t quite see from where you\'re standing. I\'ll say what I notice. Sometimes a question. Mostly I\'ll just be quiet long enough for you to hear what you\'re actually saying.'),
-              e('p', { style: ps }, 'The ideas you leave with will be yours. Not mine. I\'m not being modest. The ones I might come up with would be designed for someone I\'ve known for an hour. The ones you come up with are designed by the person who has to live with them.'),
-              pullQuote('I won\'t tell you to believe in yourself. I\'ll help you work out what\'s actually in the way.')
+            e('div', { className: 'moments' },
+              moments.map(function (m, i) {
+                return e('article', { key: i, className: 'moment' },
+                  e('span', { className: 'num' }, m.n),
+                  e('h3', null, m.q[0], e('br'), m.q[1]),
+                  e('p', null, m.p)
+                );
+              })
             )
           ),
 
-          e(Divider),
-
-          /* Testimonial section — to be reinstated when real client quote is available */
-
-          /* ── Section 5: Why I built the GAP Profile ── */
-          e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
-            e(FadeIn, null, e('h2', { style: h2s }, 'Why I built the GAP Profile')),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps }, 'I\'ll be straight about this. The GAP Profile started as a way for people to find me.'),
-              e('p', { style: ps }, 'I\'ve trained as a coach and spent years working as a careers adviser at a UK university, sitting with people who knew what they should be doing but weren\'t doing it. That\'s the gap I kept thinking about, and eventually the gap I built the assessment around.'),
-              e('p', { style: Object.assign({}, ps, { marginTop: 32 }) }, 'I wanted something useful that someone could do in five minutes (for free, no sign-up) that would help them reflect on why they felt stuck. If it was helpful and they wanted to talk, they\'d know where to find me. If it was helpful and that was enough on its own, fair enough.'),
-              e('p', { style: ps }, 'But I didn\'t want to put out another personality quiz. There\'s plenty of those. So I went looking for what was already known about it.'),
-              e('p', { style: ps }, "The GAP Profile brings together four areas to reflect on: belief in your ability, willingness to take risks, whether a direction feels right for you, and the capacity you have available. Your answers can suggest somewhere useful to start. They cannot tell the whole story."),
-              e('p', { style: ps }, "It is a self-reflection tool, not a diagnosis or a scientifically validated assessment. Use the result as a starting point for your own thinking or a coaching conversation.")
-            )
-          ),
-
-          e(Divider),
-
-          /* ── Section 6: The GAP Profile ── */
-          e('section', { id: 'gap', style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
-            e(FadeIn, null, e('h2', { style: h2s }, 'The GAP Profile')),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps }, 'You\'ve heard enough about it. Here\'s what one of the four patterns looks like.')
-            ),
-            e(FadeIn, { delay: 0.08 },
-              e('div', {
-                style: {
-                  background: 'radial-gradient(120% 120% at 100% 0%, rgba(42,157,143,.16), transparent 55%) ' + C.navy,
-                  borderRadius: 10,
-                  padding: '28px 24px',
-                  marginBottom: 24,
-                  color: '#f5f0e8',
-                  border: '1px solid rgba(42,157,143,.22)'
-                }
-              },
-                e('p', {
-                  style: {
-                    fontSize: '.68rem',
-                    letterSpacing: '.08em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(245,240,232,.65)',
-                    fontWeight: 600,
-                    marginBottom: 16
-                  }
-                }, 'One of four patterns'),
-                e('p', {
-                  style: {
-                    fontFamily: F.serif,
-                    fontSize: 'clamp(1.4rem, 3.5vw, 1.75rem)',
-                    color: C.teal,
-                    lineHeight: 1.25,
-                    marginBottom: 10,
-                    fontWeight: 400
-                  }
-                }, 'The Capable Doubter'),
-                e('p', {
-                  style: {
-                    fontSize: '.92rem',
-                    color: 'rgba(245,240,232,.7)',
-                    lineHeight: 1.6,
-                    marginBottom: 10
-                  }
-                }, 'You can do this. You just don\'t trust your own evidence.'),
-                e('p', {
-                  style: {
-                    fontSize: '.72rem',
-                    color: 'rgba(245,240,232,.75)',
-                    marginTop: 14,
-                    marginBottom: 0
-                  }
-                }, "This is one of four reflection patterns used by GAP Profile. Your answers suggest areas to explore; you decide what fits your situation.")
-              )
-            ),
-            e(FadeIn, null,
-              e('a', {
-                href: GAP,
-                className: 'btn-amber',
-                style: { padding: '12px 24px', fontSize: '.9rem' }
-              }, 'Take the GAP Profile'),
-              e('p', {
-                style: { color: C.light, fontSize: '.85rem', marginTop: 12, marginBottom: 0 }
-              }, 'Free. No sign-up. About five minutes.')
-            )
-          ),
-
-          e(Divider),
-
-          /* ── Section 7: Ways to work with me ── */
-          e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
-            e(FadeIn, null, e('h2', { style: h2s }, 'Ways to work with me')),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps }, 'The GAP Profile is the starting point. From there, three other ways to go deeper if it\'s useful.'),
-              e('div', {
-                style: {
-                  background: C.white,
-                  borderRadius: 8,
-                  padding: '20px 22px',
-                  border: '1px solid ' + C.sandDk,
-                  boxShadow: '0 2px 14px rgba(44,42,37,.05)'
-                }
-              },
-                [
-                  { name: 'GAP Profile Workbook', desc: 'For when you want to do the thinking on your own. Your pattern, your pace, the exercises that fit it.', price: '£9.99', note: 'About an hour, matched to your pattern. Offered with your GAP Profile results' },
-                  { name: 'GAP Profile Session', desc: 'For when you\'d rather think it through with someone who\'ll listen properly and ask the question you\'ve been quietly avoiding.', price: '£125', note: '60 minutes, one-to-one, on Zoom', href: 'https://calendly.com/joemarkland86/30min?back=1', linkLabel: 'Book a 60-minute session (£125)', bookingNote: 'Choose a time, then enter your details and pay £125 through Calendly.', rec: true },
-                  { name: 'Six Coaching Sessions', desc: 'For when one conversation won\'t get you there. We agree the focus and the spacing between us, and can revisit the focus as the work develops.', price: '£600', note: 'A £125 session counts as the first of the six', href: 'mailto:hello@joemarkland.co.uk?subject=Six%20coaching%20sessions', linkLabel: 'Ask about six sessions', bookingNote: 'Can be paid as two payments of £300.' }
-                ].map(function (r, i) {
-                  return e('div', {
-                    key: i,
-                    style: {
-                      padding: '14px 0',
-                      borderBottom: i < 2 ? '1px solid ' + C.sandDk + '50' : 'none',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-start'
-                    }
-                  },
-                    e('div', { style: { minWidth: 0 } },
-                      e('div', {
-                        style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginBottom: 2 }
-                      },
-                        e('span', { style: { fontWeight: 600, color: C.ink, fontSize: '.92rem' } }, r.name),
-                        r.rec ? e('span', {
-                          style: {
-                            background: C.navy,
-                            color: C.white,
-                            fontSize: '.6rem',
-                            fontWeight: 700,
-                            padding: '2px 6px',
-                            borderRadius: 3,
-                            letterSpacing: '.03em'
-                          }
-                        }, 'RECOMMENDED') : null
-                      ),
-                      e('span', { style: { color: C.mid, fontSize: '.85rem' } }, r.desc),
-                      e('br'),
-                      e('span', { style: { color: C.light, fontSize: '.78rem' } }, r.note),
-                      r.href ? e('a', {
-                        href: r.href,
-                        style: {
-                          display: 'flex', alignItems: 'center', minHeight: 44,
-                          marginTop: 10, color: C.navy, fontSize: '.88rem',
-                          fontWeight: 600, textDecoration: 'underline',
-                          textUnderlineOffset: '3px'
-                        }
-                      }, r.linkLabel) : null,
-                      r.bookingNote ? e('p', {
-                        style: { color: C.mid, fontSize: '.78rem', lineHeight: 1.5, marginTop: 4 }
-                      }, r.bookingNote) : null
-                    ),
-                    e('span', {
-                      style: {
-                        fontWeight: 700,
-                        color: C.ink,
-                        fontSize: '.95rem',
-                        fontFamily: F.serif,
-                        flexShrink: 0,
-                        marginLeft: 16
-                      }
-                    }, r.price)
+          /* ── How I coach ── */
+          e('section', { className: 'dark section', id: 'approach' },
+            e('div', { className: 'wrap method' },
+              e('div', null,
+                eyebrow('How I coach'),
+                e('h2', null, 'You do the thinking.', e('br'), e('em', null, 'I listen properly.')),
+                e('p', null, "Listening properly is rarer than it sounds. You know your situation better than I do. I'll notice the word you keep coming back to, or the thing you mentioned in passing that probably mattered."),
+                e('div', { className: 'quote' }, "“I'll say what I notice. You get to decide what fits.”")
+              ),
+              e('div', { className: 'steps' },
+                steps.map(function (s, i) {
+                  return e('div', { key: i, className: 'step' },
+                    e('span', null, '0' + (i + 1)),
+                    e('div', null, e('h3', null, s.t), e('p', null, s.p))
                   );
                 })
-              ),
-              e('p', { style: Object.assign({}, ps, { marginTop: 24 }) },
-                'You don\'t need to know now which one\'s right. Whichever you choose, you can take it a step at a time.'
               )
             )
           ),
 
-          e(Divider),
-
-          /* ── Section 8: Questions people usually ask ── */
-          e('section', { id: 'faq', style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 48 }) },
-            e('h2', { style: h2s }, 'Questions people usually ask'),
-            [
-              { q: 'Is this therapy?', a: 'No. Therapy tends to look backwards, at how you got here. Coaching looks at what\'s in the way now and what you want to do about it. If something came up that belonged in therapy, I\'d say so.' },
-              { q: 'I\'m sceptical about coaching. Is this for me?', a: 'Probably yes. Most of the people I work with were sceptical before they started. They\'d associated coaching with motivational stuff or expensive wellness, and weren\'t sure it was for them. This isn\'t that. If you want to get a feel for how I actually work before committing to anything, take the GAP Profile. That\'ll tell you more than I could here.' },
-              { q: 'I\'m a parent reading this for my son or daughter. Is that strange?', a: 'Not at all. Quite a few of the people I work with got here because a parent sent them the link. If you\'re trying to work out how to help without pushing too hard, I\'ve written a page specifically for parents.' },
-              { q: 'How do I know whether the workbook is enough or I need a session?', a: 'If you\'re the sort of person who follows through on something written down, the workbook will get you a long way on its own. If you\'d rather think it through with someone, book a session. There\'s no wrong answer, and you don\'t have to decide now. You can take it a step at a time.' },
-              { q: 'I\'m not a graduate. Does this still apply?', a: 'Mostly I work with graduates and people early in their careers, because that\'s where the patterns I work with tend to show up clearest. But the same things get in the way at other points too. Take the GAP Profile. It\'ll give you a quick sense of whether this is useful for where you are.' },
-              { q: 'Where are you based? Do I have to be local?', a: 'I\'m based in Chorley, in Lancashire. Sessions are online, so where you are doesn\'t really matter. I work with people across the UK and occasionally further afield.' }
-            ].map(function (f, i) {
-              var isOpen = faqOpen === i;
-              var isParents = f.q.indexOf('son or daughter') !== -1;
-              return e('div', {
-                key: i,
-                style: {
-                  background: isOpen ? '#fff' : 'rgba(255,255,255,0.6)',
-                  borderRadius: 10,
-                  marginBottom: 12,
-                  padding: '0 20px',
-                  boxShadow: isOpen ? '0 4px 16px rgba(44,42,37,.07)' : 'none',
-                  transition: 'background .2s ease, box-shadow .25s ease'
-                }
-              },
-                e('button', {
-                  className: 'qb',
-                  id: 'faq-question-' + i,
-                  onClick: function () { setFaqOpen(isOpen ? null : i); },
-                  'aria-expanded': isOpen,
-                  'aria-controls': 'faq-' + i,
-                  style: { borderTop: 'none' }
-                },
-                  e('span', null, f.q),
-                  e('span', {
-                    className: 'faq-icon',
-                    'aria-hidden': 'true',
-                    style: { transform: isOpen ? 'rotate(45deg)' : 'none' }
-                  }, isOpen ? '×' : '+')
+          /* ── Ways to work together ── */
+          e('section', { className: 'wrap section', id: 'sessions' },
+            e('div', { className: 'section-head' },
+              e('div', null,
+                eyebrow('Ways to work together'),
+                e('h2', null, 'A conversation.', e('br'), e('em', null, 'Then see where you are.'))
+              ),
+              e('p', null, "You can book one session without committing to more. You don't need to take the GAP Profile first.")
+            ),
+            e('div', { className: 'offers' },
+              e('article', { className: 'offer featured' },
+                e('div', { className: 'offer-top' }, e('span', null, 'A focused starting point'), e('span', null, '01')),
+                e('h3', null, 'One coaching session'),
+                e('div', { className: 'price' }, '£125', e('small', null, '60 minutes · Zoom')),
+                e('p', null, "Bring the decision or career move you keep coming back to. We'll give it some proper attention."),
+                e('ul', null,
+                  e('li', null, 'Agree what would make the hour useful'),
+                  e('li', null, "Explore what's keeping you stuck"),
+                  e('li', null, 'Work towards a next step you can use')
                 ),
-                e('div', {
-                  id: 'faq-' + i,
-                  hidden: !isOpen,
-                  'aria-labelledby': 'faq-question-' + i,
-                  role: 'region',
-                  className: 'faq-body ' + (isOpen ? 'open' : 'closed')
-                },
-                  e('p', {
-                    style: { color: C.mid, fontSize: '.9rem', lineHeight: 1.75, paddingBottom: 20 }
-                  },
-                    f.a,
-                    isParents ? [' ', e('a', {
-                      key: 'pl',
-                      href: '#/parents',
-                      onClick: function (ev) { ev.preventDefault(); props.setPage('parents'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); },
-                      style: { color: C.tealText, fontWeight: 500, textDecoration: 'none' }
-                    }, 'Read more →')] : null
-                  )
-                )
-              );
-            })
-          ),
-
-          e(Divider),
-
-          /* ── Section 9: A last thought ── */
-          e('section', { style: Object.assign({}, w, { paddingTop: 48, paddingBottom: 80 }) },
-            e(FadeIn, null,
-              e('h2', { style: h2s }, 'A last thought'),
-              e('p', { style: ps },
-                'If you\'ve read this far, you\'re probably the kind of person who\'s already done a lot of thinking about your situation. The GAP Profile is the most useful next step I can offer you. But if you\'d rather skip it and just have a conversation, that\'s also fine.'
+                e('a', { className: 'btn', href: CAL }, 'Book a 60-minute session ', arrow()),
+                e('p', { className: 'offer-note' }, 'Choose a time, then pay £125 through Calendly. Or ', e('a', { href: MAIL + '?subject=Question%20before%20booking' }, 'ask a question first'), '.')
               ),
-              e('p', { style: { fontFamily: F.sans, fontSize: '.95rem', color: C.ink, marginTop: 16, marginBottom: 0 } },
-                e('a', {
-                  href: 'mailto:hello@joemarkland.co.uk',
-                  style: { color: C.ink, textDecoration: 'underline' }
-                }, 'hello@joemarkland.co.uk')
+              e('article', { className: 'offer' },
+                e('div', { className: 'offer-top' }, e('span', null, 'Space to try, reflect and adjust'), e('span', null, '02')),
+                e('h3', null, 'Six coaching sessions'),
+                e('div', { className: 'price' }, '£600', e('small', null, 'Two payments of £300 available')),
+                e('p', null, 'For something you want to work on over time, with space between conversations to put your thinking into practice.'),
+                e('ul', null,
+                  e('li', null, 'Agree the focus and spacing together'),
+                  e('li', null, 'Return to what happens between sessions'),
+                  e('li', null, 'Adjust the approach as you learn')
+                ),
+                e('a', { className: 'btn', href: MAIL + '?subject=Six%20coaching%20sessions' }, 'Ask about six sessions ', arrow()),
+                e('p', { className: 'offer-note' }, 'Already had a £125 session? It counts as the first of the six.')
+              )
+            ),
+            e('div', { className: 'booking-note' },
+              e('span', { className: 'eyebrow' }, 'What happens next'),
+              e('p', null, "Book a single session and pay through Calendly, and you'll get a Zoom link for the time you chose. For six sessions, send me a short email about what you'd like help with and we'll agree the arrangements."),
+              e('a', { href: MAIL + '?subject=Booking%20and%20cancellation%20questions' }, 'Ask about booking or cancellations →')
+            ),
+            e('div', { className: 'gap-box' },
+              e('div', null,
+                eyebrow('Something you can do today'),
+                e('h3', null, 'Start with a little', e('br'), 'thinking of your own.')
+              ),
+              e('div', null,
+                e('p', null, 'The free GAP Profile asks about a career move you feel stuck on and helps you reflect on what might be getting in the way. It takes about five minutes, with no account or sign-up.'),
+                e('p', null, "You can also explore a matching workbook for £9.99 from your results. Coaching is there if you'd like to talk it through."),
+                e('a', { className: 'textlink', href: GAP }, 'Take the free GAP Profile →'),
+                e('p', { className: 'fine' }, 'A self-reflection tool, not a diagnosis or a scientifically validated assessment. Your answers suggest areas to explore; you decide what fits.')
               )
             )
+          ),
+
+          /* ── The person you'll be talking to ── */
+          e('section', { className: 'about section' },
+            e('div', { className: 'wrap about-grid' },
+              e('div', { className: 'monogram', 'aria-hidden': 'true' }, 'jm.', e('small', null, 'Joe Markland · Chorley, Lancashire')),
+              e('div', null,
+                eyebrow("The person you'll be talking to"),
+                e('h2', null, "I'm Joe.", e('br'), e('em', null, 'Good to meet you.')),
+                e('p', null, "My background is in university careers and early-career professional development. I've spent a lot of time talking with people who have thought carefully about their future and still feel stuck."),
+                e('p', null, "I'm interested in the bit where another piece of advice doesn't seem to help. What's making this particular decision difficult? What have you already tried? What might you be overlooking?"),
+                e('p', null, "I hold a Personal Performance Coaching Diploma with distinction from The Coaching Academy, and I'm a Level 6 Career Development Professional."),
+                e('p', null, "Based in Chorley. Usually on Zoom. If you're local and would prefer to meet face to face, ask me about it."),
+                e('a', { className: 'textlink', href: '#/about', onClick: toPage('about') }, 'More about me →')
+              )
+            )
+          ),
+
+          /* ── Before we talk ── */
+          e('section', { className: 'wrap section faq' },
+            e('div', null,
+              eyebrow('Before we talk'),
+              e('h2', null, 'A few things', e('br'), e('em', null, 'you might be wondering.'))
+            ),
+            e('div', null,
+              faqs.map(function (f, i) {
+                return e('details', { key: i }, e('summary', null, f.q), e('p', null, f.a));
+              })
+            )
+          ),
+
+          /* ── Closing ── */
+          e('section', { className: 'dark closing' },
+            e('h2', null, "You don't have to arrive", e('br'), 'with ', e('em', null, 'the answer.')),
+            e('a', { className: 'btn amber', href: MAIL + '?subject=Coaching%20enquiry' }, "Let's talk about where you are ", arrow()),
+            e('p', null, 'Or take a first look with the ', e('a', { href: GAP }, 'free GAP Profile'), '.')
           )
         );
       }
+
       function AboutPage() {
         return e('main', null,
 
@@ -1034,9 +935,12 @@
             minHeight: '100vh'
           }
         },
+          e('a', { className: 'skip-link', href: '#/', onClick: function (ev) { ev.preventDefault(); var m = document.getElementById('main'); if (m) m.focus(); } }, 'Skip to content'),
           e(Nav, { page: page, setPage: setPage }),
-          page === 'about' ? e(AboutPage) : page === 'parents' ? e(ParentsPage, { setPage: setPage }) : e(HomePage, { setPage: setPage }),
-          e(Footer, { setPage: setPage })
+          e('div', { id: 'main', tabIndex: -1, style: { outline: 'none' } },
+            page === 'about' ? e(AboutPage) : page === 'parents' ? e(ParentsPage, { setPage: setPage }) : e(HomePage, { setPage: setPage })
+          ),
+          e(Footer, { setPage: setPage, wide: page === 'home' })
         );
       }
 
