@@ -533,7 +533,7 @@
               e('h1', null, 'If you already know what you should be doing… ', e('em', null, "what's actually stopping you?")),
               e('p', { className: 'lead' }, "I'm Joe. I help capable people think through what's getting in the way of their next career move, and work out what to do about it."),
               e('a', { className: 'btn amber', href: GAP }, 'Take the free GAP Profile ', arrow()),
-              e('p', { className: 'under' }, 'Five minutes, no sign-up. Or ', e('a', { href: '#/', onClick: toSection('sessions') }, 'explore coaching with me'), '.')
+              e('p', { className: 'under' }, 'A free five-minute questionnaire about a career move you keep putting off. No sign-up. Or ', e('a', { href: '#/', onClick: toSection('sessions') }, 'go straight to coaching and prices'), '.')
             ),
             e('div', { className: 'hero-art', 'aria-hidden': 'true' },
               e('div', { className: 'art-word' }, 'Thinking.'),
@@ -617,7 +617,7 @@
                   e('li', null, 'Work towards a next step you can use')
                 ),
                 e('a', { className: 'btn', href: CAL }, 'Book a 60-minute session ', arrow()),
-                e('p', { className: 'offer-note' }, 'Choose a time, then pay £125 through Calendly. Or ', e('a', { href: MAIL + '?subject=Question%20before%20booking' }, 'ask a question first'), '.')
+                e('p', { className: 'offer-note' }, 'Choose a time, then pay £125 through Calendly. Not ready to book? ', e('a', { href: MAIL + '?subject=Question%20before%20booking' }, "Email me a couple of lines about where you're stuck"), ". There's no charge for asking.")
               ),
               e('article', { className: 'offer' },
                 e('div', { className: 'offer-top' }, e('span', null, 'Space to try, reflect and adjust'), e('span', null, '02')),
@@ -636,7 +636,8 @@
             e('div', { className: 'booking-note' },
               e('span', { className: 'eyebrow' }, 'What happens next'),
               e('p', null, "Book a single session and pay through Calendly, and you'll get a Zoom link for the time you chose. For six sessions, send me a short email about what you'd like help with and we'll agree the arrangements."),
-              e('a', { href: MAIL + '?subject=Booking%20and%20cancellation%20questions' }, 'Ask about booking or cancellations →')
+              e('p', null, "Need to move a session? Give me at least 24 hours' notice and we'll find another time. With less notice than that, the session is charged. If something serious comes up, tell me and we'll sort it out."),
+              e('a', { href: MAIL + '?subject=Booking%20question' }, 'Ask about booking →')
             ),
             e('div', { className: 'gap-box' },
               e('div', null,
@@ -690,7 +691,7 @@
         );
       }
 
-      function AboutPage() {
+      function AboutPage(props) {
         return e('main', null,
 
           e('section', { style: Object.assign({}, w, { paddingTop: 52, paddingBottom: 44 }) },
@@ -797,6 +798,22 @@
                 }, 'Not sure where to start?'),
                 e('p', { style: Object.assign({}, ps, { marginBottom: 22, fontSize: 'clamp(0.9rem, 2vw, 0.98rem)' }) },
                   'You can take the free GAP Profile on your own, as a way to reflect before deciding anything. Or you can get in touch about coaching directly. You don\'t need to do one before the other.'
+                ),
+                e('p', { style: Object.assign({}, ps, { marginBottom: 22, fontSize: 'clamp(0.9rem, 2vw, 0.98rem)' }) },
+                  'One session is £125. Six are £600. ',
+                  e('a', {
+                    href: '#/',
+                    style: { color: C.ink, textDecoration: 'underline' },
+                    onClick: function (ev) {
+                      ev.preventDefault();
+                      props.setPage('home');
+                      setTimeout(function () {
+                        var el = document.getElementById('sessions');
+                        if (el) el.scrollIntoView();
+                      }, 80);
+                    }
+                  }, 'See how it works'),
+                  '.'
                 ),
                 e('a', {
                   href: GAP,
@@ -946,7 +963,7 @@
           e('a', { className: 'skip-link', href: '#/', onClick: function (ev) { ev.preventDefault(); var m = document.getElementById('main'); if (m) m.focus(); } }, 'Skip to content'),
           e(Nav, { page: page, setPage: setPage }),
           e('div', { id: 'main', tabIndex: -1, style: { outline: 'none' } },
-            page === 'about' ? e(AboutPage) : page === 'parents' ? e(ParentsPage, { setPage: setPage }) : e(HomePage, { setPage: setPage })
+            page === 'about' ? e(AboutPage, { setPage: setPage }) : page === 'parents' ? e(ParentsPage, { setPage: setPage }) : e(HomePage, { setPage: setPage })
           ),
           e(Footer, { setPage: setPage, wide: page === 'home' })
         );
