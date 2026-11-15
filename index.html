@@ -535,8 +535,7 @@
         ];
         var faqs = [
           { q: 'Do I need to know what I want to do?', a: ["No. You can bring a specific decision or a less tidy sense that something needs to change. We'll agree a useful focus for the conversation together."] },
-          { q: 'Do I have to complete the GAP Profile?', a: ["No. It's an optional way to reflect before we speak. You can book coaching directly."] },
-          { q: 'Do I need six sessions?', a: ['You can start with one and decide afterwards. If you continue, your £125 session counts as the first of the six, so the remaining five are £475. There\'s no deadline for deciding.'] },
+          { q: 'Do I need six sessions?', a: ['You can start with one and decide afterwards. There\'s no deadline for deciding.'] },
           { q: 'Can I ask a question before booking?', a: ['Of course. Email ', e('a', { key: 'm', href: MAIL }, 'hello@joemarkland.co.uk'), " with what you'd like to know, including questions about availability or changing an appointment."] },
           { q: "I'm looking for support for my son or daughter.", a: ["You're welcome to get in touch. The person having coaching needs to want to take part, and we can discuss how you can support them while giving them space to make their own decisions. I've also written ", e('a', { key: 'p', href: '#/parents', onClick: toPage('parents') }, 'a page for parents'), '.'] },
           { q: 'Is coaching the right kind of support?', a: ["My coaching focuses on career decisions, goals and action. It doesn't provide mental health treatment. If your needs sit outside my experience or scope, I'll be open about that."] }
@@ -660,7 +659,7 @@
                   e('li', null, 'Work towards a next step you can use')
                 ),
                 e('a', { className: 'btn', href: CAL }, 'Book a 60-minute session ', arrow()),
-                e('p', { className: 'offer-note' }, 'Choose a time, then pay £125 through Calendly. Not ready to book? ', e('a', { href: MAIL + '?subject=Question%20before%20booking' }, "Email me a couple of lines about where you're stuck"), ". There's no charge for asking.")
+                e('p', { className: 'offer-note' }, 'Not ready to book? ', e('a', { href: MAIL + '?subject=Question%20before%20booking' }, "Email me a couple of lines about where you're stuck"), ". There's no charge for asking.")
               ),
               e('article', { className: 'offer' },
                 e('div', { className: 'offer-top' }, e('span', null, 'Space to try, reflect and adjust'), e('span', null, '02')),
@@ -705,7 +704,6 @@
                 e('h2', null, "I'm Joe.", e('br'), e('em', null, 'Good to meet you.')),
                 e('p', null, "My background is in university careers and early-career professional development. I've spent a lot of time talking with people who have thought carefully about their future and still feel stuck."),
                 e('p', null, "I'm interested in the bit where another piece of advice doesn't seem to help. What's making this particular decision difficult? What have you already tried? What might you be overlooking?"),
-                e('p', null, "I hold a Personal Performance Coaching Diploma with distinction from The Coaching Academy, and I'm a Level 6 Career Development Professional."),
                 e('p', null, "Based in Chorley. Usually on Zoom. If you're local and would prefer to meet face to face, ask me about it."),
                 e('a', { className: 'textlink', href: '#/about', onClick: toPage('about') }, 'More about me →')
               )
