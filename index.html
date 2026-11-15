@@ -221,6 +221,13 @@
     .jm .step h3 { font-size: 28px; margin-bottom: 8px; }
     .jm .step p { margin: 0; font-size: 16px; }
     .jm .quote { border-left: 2px solid var(--amber); padding-left: 23px; margin-top: 40px; font: italic 29px/1.35 'Instrument Serif', serif; }
+    .jm .try { background: #ece6da; }
+    .jm .questions { list-style: none; border-top: 1px solid #d3cabb; }
+    .jm .question { display: grid; grid-template-columns: 50px 1.25fr 1fr; gap: 30px; align-items: baseline; padding: 30px 0; border-bottom: 1px solid #d3cabb; }
+    .jm .question .num { margin: 0; }
+    .jm .question h3 { margin: 0; font-size: 31px; line-height: 1.15; }
+    .jm .question p { margin: 0; font-size: 16px; color: var(--mid); }
+    .jm .try-close { max-width: 560px; margin: 40px 0 26px; color: var(--mid); }
     .jm .offers { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .jm .offer { background: #fffaf2; border: 1px solid var(--line); padding: 38px; display: flex; flex-direction: column; }
     .jm .offer.featured { background: #e8ece4; border-color: #cbd6c9; }
@@ -275,6 +282,8 @@
       .jm .moment + .moment { border-top: 1px solid var(--line); }
       .jm .num { margin-bottom: 12px; }
       .jm .moment h3 { margin-bottom: 10px; }
+      .jm .question { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+      .jm .question h3 { font-size: 27px; }
       .jm .offers { grid-template-columns: 1fr; }
       .jm .offer { padding: 28px; }
       .jm .monogram { max-width: 300px; width: 100%; font-size: 120px; }
@@ -516,6 +525,13 @@
           { t: "Look at what's in the way.", p: "We look at the assumptions, concerns and practical constraints around it. I'll ask questions and offer observations for you to consider." },
           { t: 'Find a next step that fits.', p: 'We work towards something useful you can take away: a decision to explore, a conversation to have, or a manageable action to try.' }
         ];
+        var questions = [
+          { q: 'What would make the next hour worth your time?', p: 'Most people start with the whole tangle. Naming one useful outcome makes it smaller.' },
+          { q: 'What have you already tried?', p: "You've probably done more than you give yourself credit for." },
+          { q: "What's the part of this you haven't said out loud to anyone?", p: "There usually is one. It's often the part that matters." },
+          { q: 'What do you already know, that you\'re hoping someone else will say first?', p: 'Waiting for permission can look a lot like waiting for information.' },
+          { q: 'Picture yourself a year from now, and nothing has changed. What do you wish you\'d done today?', p: 'Staying put is a decision too. This is what it looks like from the other side.' }
+        ];
         var faqs = [
           { q: 'Do I need to know what I want to do?', a: ["No. You can bring a specific decision or a less tidy sense that something needs to change. We'll agree a useful focus for the conversation together."] },
           { q: 'Do I have to complete the GAP Profile?', a: ["No. It's an optional way to reflect before we speak. You can book coaching directly."] },
@@ -594,6 +610,30 @@
                   );
                 })
               )
+            )
+          ),
+
+          /* ── Try it now ── */
+          e('section', { className: 'try section' },
+            e('div', { className: 'wrap' },
+              e('div', { className: 'section-head' },
+                e('div', null,
+                  eyebrow('Try it now'),
+                  e('h2', null, 'Five questions I might ask you.', e('br'), e('em', null, 'Have a go on your own.'))
+                ),
+                e('p', null, 'Every conversation is different, because you decide what we talk about. These are the kind of questions that tend to come up. Pick the career move you keep coming back to and answer them honestly.')
+              ),
+              e('ol', { className: 'questions' },
+                questions.map(function (q, i) {
+                  return e('li', { key: i, className: 'question' },
+                    e('span', { className: 'num', 'aria-hidden': 'true' }, '0' + (i + 1)),
+                    e('h3', null, q.q),
+                    e('p', null, q.p)
+                  );
+                })
+              ),
+              e('p', { className: 'try-close' }, "If one of those stopped you for a moment, that's worth following. If you'd like someone to think it through with, that's what a session is for."),
+              e('a', { className: 'btn', href: '#/', onClick: toSection('sessions') }, 'See sessions and prices ', arrow())
             )
           ),
 
