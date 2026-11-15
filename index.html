@@ -426,6 +426,7 @@
               e('a', { href: '#/', className: 'nav-text-link optional', onClick: toSection('approach') }, 'My approach'),
               e('a', { href: '#/about', className: 'nav-text-link' + (props.page === 'about' ? ' active' : ''), onClick: toPage('about') }, 'About'),
               e('a', { href: '#/parents', className: 'nav-text-link optional' + (props.page === 'parents' ? ' active' : ''), onClick: toPage('parents') }, 'For parents'),
+              e('a', { href: '/higher-education/', className: 'nav-text-link optional' }, 'For university staff'),
               e('a', { href: '#/', className: 'nav-text-link navcta', onClick: toSection('sessions') }, 'Work with me')
             )
           )
@@ -590,7 +591,8 @@
                   e('p', null, m.p)
                 );
               })
-            )
+            ),
+            e('p', { className: 'under', style: { marginTop: 28 } }, 'Work in higher education? ', e('a', { href: '/higher-education/' }, "I've written a page for you →"))
           ),
 
           /* ── How I coach ── */
@@ -614,7 +616,7 @@
           ),
 
           /* ── Try it now ── */
-          e('section', { className: 'try section' },
+          e('section', { className: 'try section', id: 'questions' },
             e('div', { className: 'wrap' },
               e('div', { className: 'section-head' },
                 e('div', null,
@@ -961,6 +963,8 @@
         );
       }
 
+      var startHash = window.location.hash;
+
       function App() {
         var pageState = useState(function () {
           var h = window.location.hash.slice(1);
@@ -991,6 +995,14 @@
           }
           document.title = (page === 'about' ? 'About | ' : page === 'parents' ? 'For parents | ' : '') + 'Joe Markland | Career coach in Lancashire and online';
         }, [page]);
+
+        useEffect(function () {
+          if (startHash !== '#/questions') return;
+          setTimeout(function () {
+            var el = document.getElementById('questions');
+            if (el) el.scrollIntoView();
+          }, 80);
+        }, []);
 
         return e('div', {
           style: {
