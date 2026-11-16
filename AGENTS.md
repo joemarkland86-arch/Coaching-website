@@ -8,7 +8,7 @@ Optimise for visitor understanding, justified trust and a working next step.
 ## Read first
 Read WEBSITE_TEAM.md, the current index.html, CNAME and deployment workflow before edits.
 Current implementation: static index.html with React 18 loaded from CDN; no package manifest or build pipeline.
-Home is a single React page. About (/about/), For parents (/parents/), For dads (/dads/) and For university staff (/higher-education/) are static HTML pages so search engines can index each one; keep them in sitemap.xml. Old #/about and #/parents links redirect to the new pages, so preserve that redirect. Preserve direct links, refresh and back/forward navigation.
+Home is a single React page whose rendered HTML is also stored inside <div id="root"> in index.html (between the prerender markers) so search engines and AI assistants can read it without JavaScript. After ANY change to homepage copy or layout, run `python3 .github/prerender.py` and commit the result; `--check` reports whether it is out of date. About (/about/), For parents (/parents/), For dads (/dads/) and For university staff (/higher-education/) are static HTML pages so search engines can index each one; keep them in sitemap.xml. Old #/about and #/parents links redirect to the new pages, so preserve that redirect. Preserve direct links, refresh and back/forward navigation.
 Keep the existing stack unless a specific requirement justifies a change.
 
 ## Working rules
