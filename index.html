@@ -47,7 +47,7 @@
     ]
   }
   </script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1f3d'/%3E%3Ctext x='30' y='44' font-family='Georgia,serif' font-size='36' fill='%23f5f0e8' text-anchor='middle'%3EJ%3C/text%3E%3Ccircle cx='46' cy='42' r='4' fill='%232a9d8f'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a1f3d'/%3E%3Ctext x='30' y='44' font-family='Georgia,serif' font-size='36' fill='%23f5f0e8' text-anchor='middle'%3EJ%3C/text%3E%3Ccircle cx='46' cy='42' r='4' fill='%238bc7b6'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -58,9 +58,10 @@
     html { scroll-behavior: smooth; scroll-padding-top: 90px; }
     body { margin: 0; background: #f5f0e8; }
     h1, h2, h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
-    ::selection { background: rgba(42,157,143,.18); }
-    a { color: #1c7268; }
-    *:focus-visible { outline: 2px solid #2a9d8f; outline-offset: 2px; }
+    ::selection { background: rgba(35,122,112,.18); }
+    a { color: #237a70; }
+    *:focus-visible { outline: 2px solid #237a70; outline-offset: 2px; }
+    footer :focus-visible { outline-color: #8bc7b6; }
     .btn-amber {
       display: inline-block;
       background: #e9a319;
@@ -81,7 +82,7 @@
       display: block;
       margin-bottom: 6px;
     }
-    .footer-link:hover { color: #2a9d8f; }
+    .footer-link:hover { color: #8bc7b6; }
     .skip-link { position: absolute; top: -80px; left: 16px; z-index: 60; background: #1a1f3d; color: #fff; padding: 14px 18px; font: 600 15px 'DM Sans', sans-serif; }
     .skip-link:focus { top: 10px; }
     .site-header {
@@ -133,7 +134,7 @@
       align-items: center;
     }
     .nav-text-link:hover,
-    .nav-text-link.active { color: #1c7268; }
+    .nav-text-link.active { color: #237a70; }
     .nav-text-link.navcta { font-weight: 600; }
     @media (max-width: 800px) {
       .site-header .nav-inner { padding: 0 23px; height: 68px; }
@@ -170,7 +171,7 @@
       margin-right: 8px;
       flex-shrink: 0;
     }
-    .jm { --sand: #f5f0e8; --ink: #2c2a25; --navy: #1a1f3d; --teal: #237a70; --amber: #e9a319; --line: #d9d2c6; --mid: #57534b; background: var(--sand); color: var(--ink); font: 17px/1.65 'DM Sans', Arial, sans-serif; }
+    .jm { --sand: #f5f0e8; --ink: #2c2a25; --navy: #1a1f3d; --teal: #237a70; --amber: #e9a319; --line: #d9d2c6; --band: #ece6da; --mid: #57534b; background: var(--sand); color: var(--ink); font: 17px/1.65 'DM Sans', Arial, sans-serif; }
     .jm a { color: inherit; }
     .jm :focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
     .jm .dark :focus-visible { outline-color: var(--amber); }
@@ -190,9 +191,9 @@
     .jm .btn.amber { background: var(--amber); color: var(--navy); border-color: var(--amber); }
     .jm .btn.amber:hover { background: #f0b23a; }
     .jm .under { font-size: 15px; color: var(--mid); margin: 16px 0 0; }
-    .jm .hero-art { height: 510px; background: #eae4d8; position: relative; overflow: hidden; border-radius: 180px 180px 4px 4px; border: 1px solid #ded5c4; display: flex; flex-direction: column; justify-content: center; padding: 45px; }
+    .jm .hero-art { height: 510px; background: var(--band); position: relative; overflow: hidden; border-radius: 180px 180px 4px 4px; border: 1px solid #ded5c4; display: flex; flex-direction: column; justify-content: center; padding: 45px; }
     .jm .hero-art::before { content: ''; position: absolute; inset: 18px; border: 1px solid rgba(199,189,169,.45); border-radius: 170px 170px 0 0; }
-    .jm .art-word { font: italic 65px 'Instrument Serif', serif; color: var(--navy); position: relative; z-index: 2; text-shadow: 0 3px 14px #eae4d8; }
+    .jm .art-word { font: italic 65px 'Instrument Serif', serif; color: var(--navy); position: relative; z-index: 2; text-shadow: 0 3px 14px var(--band); }
     .jm .art-word.second { text-align: right; margin-top: 110px; }
     .jm .art-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
     .jm .art-draw { stroke-dasharray: 900; stroke-dashoffset: 900; animation: jmdraw 2.6s ease forwards; }
@@ -221,7 +222,7 @@
     .jm .step h3 { font-size: 28px; margin-bottom: 8px; }
     .jm .step p { margin: 0; font-size: 16px; }
     .jm .quote { border-left: 2px solid var(--amber); padding-left: 23px; margin-top: 40px; font: italic 29px/1.35 'Instrument Serif', serif; }
-    .jm .try { background: #ece6da; }
+    .jm .try { background: var(--band); }
     .jm .questions { list-style: none; border-top: 1px solid #d3cabb; }
     .jm .question { display: grid; grid-template-columns: 50px 1.25fr 1fr; gap: 30px; align-items: baseline; padding: 30px 0; border-bottom: 1px solid #d3cabb; }
     .jm .question .num { margin: 0; }
@@ -249,9 +250,9 @@
     .jm .gap-box p { font-size: 16px; color: var(--mid); }
     .jm .gap-box .fine { font-size: 14px; margin: 20px 0 0; }
     .jm .textlink { text-underline-offset: 6px; font-size: 16px; font-weight: 600; }
-    .jm .about { background: #e9e2d5; }
+    .jm .about { background: var(--band); }
     .jm .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; align-items: center; }
-    .jm .monogram { aspect-ratio: 1; background: #23695f; color: var(--sand); border-radius: 50% 50% 0 0; display: flex; align-items: center; justify-content: center; position: relative; font: italic 150px 'Instrument Serif', serif; }
+    .jm .monogram { aspect-ratio: 1; background: var(--teal); color: var(--sand); border-radius: 50% 50% 0 0; display: flex; align-items: center; justify-content: center; position: relative; font: italic 150px 'Instrument Serif', serif; }
     .jm .monogram small { position: absolute; bottom: 33px; font: 11px 'DM Sans', sans-serif; letter-spacing: 2px; text-transform: uppercase; }
     .jm .about p { color: var(--mid); }
     .jm .faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; }
@@ -334,8 +335,8 @@
         ink:'#2c2a25',
         mid:'#5c5850',
         light:'#6e6960',
-        teal:'#2a9d8f',
-        tealText:'#1c7268',
+        teal:'#237a70',
+        tealText:'#237a70',
         amber:'#e9a319',
         amberHover:'#d08a10',
         white:'#fff',
@@ -463,7 +464,7 @@
                   color: 'rgba(245,240,232,0.9)',
                   marginBottom: 4
                 }
-              }, 'Joe Markland', e('span', { style: { color: C.teal } }, '.')),
+              }, 'Joe Markland', e('span', { style: { color: '#8bc7b6' } }, '.')),
               e('p', {
                 style: {
                   fontFamily: F.sans,
@@ -604,7 +605,7 @@
             e('div', { className: 'wrap method' },
               e('div', null,
                 eyebrow('How I coach'),
-                e('h2', null, 'You do the thinking.', e('br'), e('em', null, 'I listen properly.')),
+                e('h2', null, 'You do the thinking.', e('br'), 'I listen properly.'),
                 e('p', null, "You know your situation better than I do. I'll notice the word you keep coming back to, or the thing you mentioned in passing that probably mattered."),
                 e('div', { className: 'quote' }, "“I'll say what I notice. You get to decide what fits.”")
               ),
@@ -625,7 +626,7 @@
               e('div', { className: 'section-head' },
                 e('div', null,
                   eyebrow('Try it now'),
-                  e('h2', null, 'Five questions I might ask you.', e('br'), e('em', null, 'Have a go on your own.'))
+                  e('h2', null, 'Five questions I might ask you.', e('br'), 'Have a go on your own.')
                 ),
                 e('p', null, 'Every conversation is different, because you decide what we talk about. These are the kind of questions that tend to come up. Pick the career move you keep coming back to and answer them honestly.')
               ),
@@ -648,7 +649,7 @@
             e('div', { className: 'section-head' },
               e('div', null,
                 eyebrow('Ways to work together'),
-                e('h2', null, 'A conversation.', e('br'), e('em', null, 'Then see where you are.'))
+                e('h2', null, 'A conversation.', e('br'), 'Then see where you are.')
               ),
               e('p', null, "You can book one session without committing to more. You don't need to take the GAP Profile first.")
             ),
@@ -707,7 +708,7 @@
               e('div', { className: 'monogram', 'aria-hidden': 'true' }, 'jm.', e('small', null, 'Joe Markland · Chorley, Lancashire')),
               e('div', null,
                 eyebrow("The person you'll be talking to"),
-                e('h2', null, "I'm Joe.", e('br'), e('em', null, 'Good to meet you.')),
+                e('h2', null, "I'm Joe.", e('br'), 'Good to meet you.'),
                 e('p', null, "My background is in university careers and early-career professional development. I've spent a lot of time talking with people who have thought carefully about their future and still feel stuck."),
                 e('p', null, "I'm interested in the bit where another piece of advice doesn't seem to help. What's making this particular decision difficult? What have you already tried? What might you be overlooking?"),
                 e('p', null, "Based in Chorley. Usually on Zoom. If you're local and would prefer to meet face to face, ask me about it."),
@@ -720,7 +721,7 @@
           e('section', { className: 'wrap section faq' },
             e('div', null,
               eyebrow('Before we talk'),
-              e('h2', null, 'A few things', e('br'), e('em', null, 'you might be wondering.'))
+              e('h2', null, 'A few things', e('br'), 'you might be wondering.')
             ),
             e('div', null,
               faqs.map(function (f, i) {
