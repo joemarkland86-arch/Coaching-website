@@ -135,6 +135,19 @@
       html { scroll-behavior: auto; }
       .jm .btn { transition: none; }
     }
+    /* Polish: price notes, arrow lists and quieter links (shared by every page) */
+    .jm .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; line-height: 1.05; margin-bottom: 14px; }
+    .jm .price small { margin-left: 0; line-height: 1.5; }
+    .jm .offer li { display: flex; gap: 12px; }
+    .jm .offer li::before { margin-right: 0; flex-shrink: 0; }
+    .jm a:not(.btn) { text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: rgba(44,42,37,.32); transition: color .15s, text-decoration-color .15s; }
+    .jm a:not(.btn):hover { color: var(--teal); text-decoration-color: currentColor; }
+    .jm .dark a:not(.btn) { text-decoration-color: rgba(245,240,232,.4); }
+    .jm .dark a:not(.btn):hover { color: #8bc7b6; text-decoration-color: currentColor; }
+    .jm .textlink, .jm .booking-note a { text-decoration: none; }
+    .jm .textlink:hover, .jm .booking-note a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+    @media (max-width: 800px) { .jm .btn { gap: 16px; } }
+    @media (prefers-reduced-motion: reduce) { .jm a:not(.btn) { transition: none; } }
   </style>
 </head>
 <body>
@@ -286,6 +299,8 @@
         <a href="/">Home</a>
         <a href="/about/">About</a>
         <a href="/parents/">For parents</a>
+        <a href="/higher-education/">For university staff</a>
+        <a href="/dads/">For dads</a>
         <a href="mailto:hello@joemarkland.co.uk">hello@joemarkland.co.uk</a>
         <a href="https://www.linkedin.com/in/joe-markland-coaching" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
