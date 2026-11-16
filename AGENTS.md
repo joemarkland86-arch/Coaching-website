@@ -8,7 +8,7 @@ Optimise for visitor understanding, justified trust and a working next step.
 ## Read first
 Read WEBSITE_TEAM.md, the current index.html, CNAME and deployment workflow before edits.
 Current implementation: static index.html with React 18 loaded from CDN; no package manifest or build pipeline.
-Home, About and Parents are hash-based routes. Preserve direct links, refresh and back/forward navigation.
+Home is a single React page. About (/about/), For parents (/parents/), For dads (/dads/) and For university staff (/higher-education/) are static HTML pages so search engines can index each one; keep them in sitemap.xml. Old #/about and #/parents links redirect to the new pages, so preserve that redirect. Preserve direct links, refresh and back/forward navigation.
 Keep the existing stack unless a specific requirement justifies a change.
 
 ## Working rules
