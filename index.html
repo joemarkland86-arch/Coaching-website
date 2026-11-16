@@ -256,6 +256,9 @@
     .jm .monogram small { position: absolute; bottom: 33px; font: 11px 'DM Sans', sans-serif; letter-spacing: 2px; text-transform: uppercase; }
     .jm .about p { color: var(--mid); }
     .jm .faq { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; }
+    .jm .split { display: grid; grid-template-columns: .8fr 1.2fr; gap: 100px; }
+    .jm .split p { color: var(--mid); }
+    .jm .split p.big { font-size: 21px; line-height: 1.55; color: var(--ink); }
     .jm details { border-bottom: 1px solid var(--line); padding: 21px 0; }
     .jm summary { cursor: pointer; list-style: none; font-size: 17px; font-weight: 500; display: flex; justify-content: space-between; gap: 20px; }
     .jm summary::-webkit-details-marker { display: none; }
@@ -276,7 +279,7 @@
       .jm .art-word.second { margin-top: 70px; }
       .jm .credentials { flex-wrap: wrap; gap: 8px 25px; }
       .jm .section { padding-top: 62px; padding-bottom: 62px; }
-      .jm .section-head, .jm .method, .jm .about-grid, .jm .faq, .jm .gap-box, .jm .booking-note { grid-template-columns: 1fr; gap: 22px; }
+      .jm .section-head, .jm .method, .jm .about-grid, .jm .faq, .jm .split, .jm .gap-box, .jm .booking-note { grid-template-columns: 1fr; gap: 22px; }
       .jm .section-head { margin-bottom: 20px; }
       .jm .moments { grid-template-columns: 1fr; }
       .jm .moment, .jm .moment + .moment { padding: 24px 0; border-left: 0; }
@@ -740,143 +743,74 @@
       }
 
       function AboutPage(props) {
-        return e('main', null,
+        var CAL = 'https://calendly.com/joemarkland86/30min';
+        var MAIL = 'mailto:hello@joemarkland.co.uk';
+        var arrow = function () { return e('span', { 'aria-hidden': 'true' }, '→'); };
+        var eyebrow = function (t) { return e('div', { className: 'eyebrow' }, t); };
+        var toSessions = function (ev) {
+          ev.preventDefault();
+          props.setPage('home');
+          setTimeout(function () {
+            var el = document.getElementById('sessions');
+            if (el) el.scrollIntoView();
+          }, 80);
+        };
+        return e('main', { className: 'jm' },
 
-          e('section', { style: Object.assign({}, w, { paddingTop: 52, paddingBottom: 44 }) },
-            e(FadeIn, null,
-              e('h1', {
-                style: {
-                  fontFamily: F.sans,
-                  fontSize: 'clamp(1.1rem, 2.6vw, 1.25rem)',
-                  lineHeight: 1.55,
-                  color: C.light,
-                  maxWidth: 480,
-                  fontWeight: 400
-                }
-              }, 'I\'m Joe Markland. I\'m a Career Coach for capable people who are stuck at the point where knowing should have turned into doing, but hasn\'t.')
+          /* ── Hero ── */
+          e('section', { className: 'wrap hero' },
+            e('div', null,
+              eyebrow('About'),
+              e('h1', null, "I'm Joe Markland, a ", e('em', null, 'Career Coach.')),
+              e('p', { className: 'lead' }, "I work with capable people who are stuck at the point where knowing should have turned into doing, but hasn't.")
+            ),
+            /* Photo goes here: replace this block with the portrait (same arch shape). */
+            e('div', { className: 'monogram', 'aria-hidden': 'true' }, 'jm.', e('small', null, 'Joe Markland · Chorley, Lancashire'))
+          ),
+
+          e('div', { className: 'stripe' },
+            e('div', { className: 'wrap credentials' },
+              e('span', null, 'Level 6 Career Guidance and Development'),
+              e('span', null, 'Personal Performance Coaching Diploma with distinction · The Coaching Academy'),
+              e('span', null, 'Accredited DISC Practitioner')
             )
           ),
 
-          e('div', { style: w },
-            e('div', { style: { height: 1, background: 'linear-gradient(to right, ' + C.ink + '15, ' + C.ink + '08)' } })
-          ),
-
-          e('section', { style: Object.assign({}, w, { paddingTop: 44, paddingBottom: 12 }) },
-            e(FadeIn, null,
-              e('p', { style: pInk },
-                'I\'m less interested in giving people more career advice, and more interested in understanding why they still feel stuck when they already know what to do.'
-              )
+          /* ── Why this work ── */
+          e('section', { className: 'wrap section split' },
+            e('div', null,
+              eyebrow('Why this work'),
+              e('h2', null, 'The gap between knowing and doing.')
             ),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps },
-                'That\'s the bit that got me. I kept seeing the same pattern in capable people: they had the insight, they had the advice, they usually had the plan. They just weren\'t acting on it. I became more interested in that gap than in giving more advice.'
-              )
-            ),
-            e(FadeIn, { delay: 0.1 },
-              e('p', { style: ps },
-                "So I built the GAP Profile as a starting point for that conversation. It explores four areas that may be relevant to feeling stuck. Your answers can help you reflect on what fits, what does not, and what you want to explore next."
-              )
+            e('div', null,
+              e('p', { className: 'big' }, "I'm less interested in giving people more career advice, and more interested in understanding why they still feel stuck when they already know what to do."),
+              e('p', null, "That's the bit that got me. I kept seeing the same pattern in capable people: they had the insight, they had the advice, they usually had the plan. They just weren't acting on it. I became more interested in that gap than in giving more advice."),
+              e('p', null, "So I built the GAP Profile as a starting point for that conversation. It explores four areas that may be relevant to feeling stuck. Your answers can help you reflect on what fits, what does not, and what you want to explore next.")
             )
           ),
 
-          e('section', { style: Object.assign({}, w, { paddingTop: 12, paddingBottom: 40 }) },
-            e(FadeIn, null,
-              e('div', { style: { borderLeft: '3px solid ' + C.teal, paddingLeft: 24 } },
-                e('p', {
-                  style: {
-                    fontFamily: F.serif,
-                    fontStyle: 'italic',
-                    fontSize: 'clamp(1.2rem, 3vw, 1.45rem)',
-                    lineHeight: 1.5,
-                    color: C.ink,
-                    margin: 0
-                  }
-                }, 'I won\'t tell you to believe in yourself. I\'ll help you work out what\'s actually in the way.')
-              )
-            )
-          ),
-
-          e('section', { style: Object.assign({}, w, { paddingTop: 0, paddingBottom: 12 }) },
-            e(FadeIn, null,
-              e('p', { style: ps },
-                'I work best with people who are thoughtful and capable. Some already have a fair idea what they should be doing next. Others only know that something needs to change. Either way, you usually don\'t need more ideas. You need to work out what keeps getting in the way, because until that bit becomes clear, it\'s very easy to keep thinking about the same move without actually making it.'
-              )
-            ),
-            e(FadeIn, { delay: 0.05 },
-              e('p', { style: ps },
-                'You\'re not going round the houses for weeks. Once you can see what\'s actually going on, it usually becomes a lot clearer what needs to shift.'
-              )
-            ),
-            e(FadeIn, { delay: 0.08 },
-              e('p', { style: ps },
-                'I hold a Personal Performance Coaching Diploma with distinction from The Coaching Academy and a Level 6 qualification in Career Guidance and Development. I\'m an Accredited DISC Practitioner.'
-              )
-            ),
-            e(FadeIn, { delay: 0.1 },
-              e('p', { style: ps },
-                'I\'m based in Chorley, Lancashire. Sessions are on Zoom, but if you\'re local and would rather do this face to face, that works too.'
-              )
-            ),
-            e(FadeIn, { delay: 0.12 },
-              e('p', { style: pInk },
-                'My aim is for you to not need me.'
+          /* ── How I work ── */
+          e('section', { className: 'about section' },
+            e('div', { className: 'wrap split' },
+              e('div', null,
+                eyebrow('How I work'),
+                e('h2', null, 'Working out what keeps getting in the way.')
+              ),
+              e('div', null,
+                e('p', { className: 'big' }, "I work best with people who are thoughtful and capable. Some already have a fair idea what they should be doing next. Others only know that something needs to change."),
+                e('p', null, "Either way, you usually don't need more ideas. You need to work out what keeps getting in the way, because until that bit becomes clear, it's very easy to keep thinking about the same move without actually making it."),
+                e('p', null, "You're not going round the houses for weeks. Once you can see what's actually going on, it usually becomes a lot clearer what needs to shift."),
+                e('p', null, "I'm based in Chorley, Lancashire. Sessions are on Zoom, but if you're local and would rather do this face to face, that works too.")
               )
             )
           ),
 
-          e('section', { style: Object.assign({}, w, { paddingTop: 28, paddingBottom: 80 }) },
-            e(FadeIn, null,
-              e('div', {
-                style: {
-                  background: C.cream,
-                  border: '1px solid rgba(44,42,37,0.08)',
-                  borderRadius: 10,
-                  padding: '32px 28px'
-                }
-              },
-                e('p', {
-                  style: {
-                    fontFamily: F.serif,
-                    fontSize: 'clamp(1.15rem, 2.8vw, 1.35rem)',
-                    lineHeight: 1.4,
-                    color: C.ink,
-                    marginBottom: 10,
-                    fontWeight: 400
-                  }
-                }, 'Not sure where to start?'),
-                e('p', { style: Object.assign({}, ps, { marginBottom: 22, fontSize: 'clamp(0.9rem, 2vw, 0.98rem)' }) },
-                  'You can take the free GAP Profile on your own, as a way to reflect before deciding anything. Or you can get in touch about coaching directly. You don\'t need to do one before the other.'
-                ),
-                e('p', { style: Object.assign({}, ps, { marginBottom: 22, fontSize: 'clamp(0.9rem, 2vw, 0.98rem)' }) },
-                  'One session is £125. Six are £600. ',
-                  e('a', {
-                    href: '#/',
-                    style: { color: C.ink, textDecoration: 'underline' },
-                    onClick: function (ev) {
-                      ev.preventDefault();
-                      props.setPage('home');
-                      setTimeout(function () {
-                        var el = document.getElementById('sessions');
-                        if (el) el.scrollIntoView();
-                      }, 80);
-                    }
-                  }, 'See how it works'),
-                  '.'
-                ),
-                e('a', {
-                  href: GAP,
-                  className: 'btn-amber',
-                  style: { padding: '13px 26px', fontSize: '.9rem' }
-                }, 'Take the free GAP Profile'),
-                e('p', { style: { color: C.light, fontSize: '.8rem', marginTop: 14, marginBottom: 0 } },
-                  'Or email me about coaching: ',
-                  e('a', {
-                    href: 'mailto:hello@joemarkland.co.uk?subject=Enquiry%20about%20a%201%3A1%20session',
-                    style: { color: C.light, textDecoration: 'underline' }
-                  }, 'hello@joemarkland.co.uk')
-                )
-              )
-            )
+          /* ── Closing ── */
+          e('section', { className: 'dark closing' },
+            e('h2', null, 'My aim is for you to ', e('em', null, 'not need me.')),
+            e('p', { style: { maxWidth: 520 } }, "Not sure where to start? You can take the free GAP Profile on your own, as a way to reflect before deciding anything, or get in touch about coaching directly. You don't need to do one before the other."),
+            e('a', { className: 'btn amber', href: GAP, style: { marginTop: 24 } }, 'Take the free GAP Profile ', arrow()),
+            e('p', null, 'Or ', e('a', { href: CAL }, 'book a 60-minute session'), ' or ', e('a', { href: MAIL + '?subject=Enquiry%20about%20a%201%3A1%20session' }, 'email me about coaching'), '. One session is £125. Six are £600. ', e('a', { href: '#/', onClick: toSessions }, 'See how it works'), '.')
           )
         );
       }
