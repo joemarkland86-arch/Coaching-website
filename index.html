@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
+  <script>
+    (function () {
+      var h = window.location.hash;
+      if (h === '#/about') window.location.replace('/about/');
+      else if (h === '#/parents') window.location.replace('/parents/');
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Joe Markland | Career Coach in Lancashire and online</title>
@@ -368,8 +375,8 @@
             ),
             e('nav', { className: 'nav-right', 'aria-label': 'Main' },
               e('a', { href: '#/', className: 'nav-text-link optional', onClick: toSection('approach') }, 'My approach'),
-              e('a', { href: '#/about', className: 'nav-text-link' + (props.page === 'about' ? ' active' : ''), onClick: toPage('about') }, 'About'),
-              e('a', { href: '#/parents', className: 'nav-text-link optional' + (props.page === 'parents' ? ' active' : ''), onClick: toPage('parents') }, 'For parents'),
+              e('a', { href: '/about/', className: 'nav-text-link' }, 'About'),
+              e('a', { href: '/parents/', className: 'nav-text-link optional' }, 'For parents'),
               e('a', { href: '/higher-education/', className: 'nav-text-link optional' }, 'For university staff'),
               e('a', { href: '#/', className: 'nav-text-link navcta', onClick: toSection('sessions') }, 'Work with me')
             )
@@ -420,8 +427,8 @@
             e('div', { style: { flex: '1 1 120px' } },
               e('p', { style: colHead }, 'Explore'),
               e('a', { href: '#/', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('home'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } }, 'Home'),
-              e('a', { href: '#/about', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('about'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } }, 'About'),
-              e('a', { href: '#/parents', className: 'footer-link', onClick: function (ev) { ev.preventDefault(); setPage('parents'); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } }, 'For parents'),
+              e('a', { href: '/about/', className: 'footer-link' }, 'About'),
+              e('a', { href: '/parents/', className: 'footer-link' }, 'For parents'),
               e('a', { href: '/higher-education/', className: 'footer-link' }, 'For university staff'),
               e('a', { href: '/dads/', className: 'footer-link' }, 'For dads'),
               e('a', { href: GAP, className: 'footer-link', target: '_blank', rel: 'noopener noreferrer' }, 'Take the GAP Profile')
@@ -455,9 +462,6 @@
             if (el) el.scrollIntoView();
           };
         };
-        var toPage = function (p) {
-          return function (ev) { ev.preventDefault(); props.setPage(p); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); };
-        };
         var arrow = function () { return e('span', { 'aria-hidden': 'true' }, '→'); };
         var eyebrow = function (t) { return e('div', { className: 'eyebrow' }, t); };
 
@@ -487,7 +491,7 @@
             ["What I offer is a conversation with someone who gets to know you: who notices when your energy changes, asks about the thing you mention then quickly move past, and follows up on what you said you wanted to do. Sometimes the most useful part is staying with a question you’d rather skip."],
             ["You can use both. Bring what you’ve worked through with AI, and we’ll take it from there."]
           ] },
-          { q: "I'm looking for support for my son or daughter.", a: ["You're welcome to get in touch. The person having coaching needs to want to take part, and we can discuss how you can support them while giving them space to make their own decisions. I've also written ", e('a', { key: 'p', href: '#/parents', onClick: toPage('parents') }, 'a page for parents'), '.'] },
+          { q: "I'm looking for support for my son or daughter.", a: ["You're welcome to get in touch. The person having coaching needs to want to take part, and we can discuss how you can support them while giving them space to make their own decisions. I've also written ", e('a', { key: 'p', href: '/parents/' }, 'a page for parents'), '.'] },
           { q: 'Is coaching the right kind of support?', a: ["My coaching focuses on career decisions, goals and action. It doesn't provide mental health treatment. If your needs sit outside my experience or scope, I'll be open about that."] }
         ];
 
@@ -656,7 +660,7 @@
                 e('p', null, "My background is in university careers and early-career professional development. I've spent a lot of time talking with people who have thought carefully about their future and still feel stuck."),
                 e('p', null, "I'm interested in the bit where another piece of advice doesn't seem to help. What's making this particular decision difficult? What have you already tried? What might you be overlooking?"),
                 e('p', null, "Based in Chorley. Usually on Zoom. If you're local and would prefer to meet face to face, ask me about it."),
-                e('a', { className: 'textlink', href: '#/about', onClick: toPage('about') }, 'More about me →')
+                e('a', { className: 'textlink', href: '/about/' }, 'More about me →')
               )
             )
           ),
@@ -683,168 +687,17 @@
         );
       }
 
-      function AboutPage(props) {
-        var CAL = 'https://calendly.com/joemarkland86/30min';
-        var MAIL = 'mailto:hello@joemarkland.co.uk';
-        var arrow = function () { return e('span', { 'aria-hidden': 'true' }, '→'); };
-        var eyebrow = function (t) { return e('div', { className: 'eyebrow' }, t); };
-        var toSessions = function (ev) {
-          ev.preventDefault();
-          props.setPage('home');
-          setTimeout(function () {
-            var el = document.getElementById('sessions');
-            if (el) el.scrollIntoView();
-          }, 80);
-        };
-        return e('main', { className: 'jm' },
-
-          /* ── Hero ── */
-          e('section', { className: 'wrap hero' },
-            e('div', null,
-              eyebrow('About'),
-              e('h1', null, "I'm Joe Markland, a ", e('em', null, 'Career Coach.')),
-              e('p', { className: 'lead' }, "I work with capable people who are stuck at the point where knowing should have turned into doing, but hasn't.")
-            ),
-            /* Photo goes here: replace this block with the portrait (same arch shape). */
-            e('div', { className: 'monogram', 'aria-hidden': 'true' }, 'jm.', e('small', null, 'Joe Markland · Chorley, Lancashire'))
-          ),
-
-          e('div', { className: 'stripe' },
-            e('div', { className: 'wrap credentials' },
-              e('span', null, 'Level 6 Career Guidance and Development'),
-              e('span', null, 'Personal Performance Life Coaching Diploma with distinction · The Coaching Academy'),
-              e('span', null, 'Accredited DISC Practitioner'),
-              e('span', null, 'Working one-to-one on career decisions since 2013')
-            )
-          ),
-
-          /* ── Why this work ── */
-          e('section', { className: 'wrap section split' },
-            e('div', null,
-              eyebrow('Why this work'),
-              e('h2', null, 'The gap between knowing and doing.')
-            ),
-            e('div', null,
-              e('p', { className: 'big' }, "I'm less interested in giving people more career advice, and more interested in understanding why they still feel stuck when they already know what to do."),
-              e('p', null, "That's the bit that got me. I kept seeing the same pattern in capable people: they had the insight, they had the advice, they usually had the plan. They just weren't acting on it. I became more interested in that gap than in giving more advice."),
-              e('p', null, "So I built the GAP Profile as a starting point for that conversation. It explores four areas that may be relevant to feeling stuck. Your answers can help you reflect on what fits, what does not, and what you want to explore next.")
-            )
-          ),
-
-          /* ── How I work ── */
-          e('section', { className: 'about section' },
-            e('div', { className: 'wrap split' },
-              e('div', null,
-                eyebrow('How I work'),
-                e('h2', null, 'Working out what keeps getting in the way.')
-              ),
-              e('div', null,
-                e('p', { className: 'big' }, "I work best with people who are thoughtful and capable. Some already have a fair idea what they should be doing next. Others only know that something needs to change."),
-                e('p', null, "Either way, you usually don't need more ideas. You need to work out what keeps getting in the way, because until that bit becomes clear, it's very easy to keep thinking about the same move without actually making it."),
-                e('p', null, "You're not going round the houses for weeks. Once you can see what's actually going on, it usually becomes a lot clearer what needs to shift."),
-                e('p', null, "I'm based in Chorley, Lancashire. Sessions are on Zoom, but if you're local and would rather do this face to face, that works too.")
-              )
-            )
-          ),
-
-          /* ── What I'm like to work with ── */
-          e('section', { className: 'wrap section split' },
-            e('div', null,
-              eyebrow('A few things worth knowing'),
-              e('h2', null, "What I'm like to work with.")
-            ),
-            e('div', null,
-              e('p', null, e('strong', null, 'You set the agenda. '), "You bring what you want to work on. We work on it together until you've got some new thinking of your own, then you decide what you're going to do with it."),
-              e('p', null, e('strong', null, "I'm practical. "), 'No vision boards, no slogans. We look at your actual situation and what you want to do about it.'),
-              e('p', null, e('strong', null, "I'm a fan of AI. "), "I use it most days and I'd encourage you to use it for your career too. Bring along whatever you've worked through with it."),
-              e('p', null, e('strong', null, 'It stays between us. '), 'What you say in a session stays there.'),
-              e('p', null, e('strong', null, 'I follow Manchester United. '), "So I do understand sticking with something long after it stopped making you happy.")
-            )
-          ),
-
-          /* ── Closing ── */
-          e('section', { className: 'dark closing' },
-            e('h2', null, 'My aim is for you to ', e('em', null, 'not need me.')),
-            e('p', { style: { maxWidth: 520 } }, "Not sure where to start? You can take the free GAP Profile on your own, as a way to reflect before deciding anything, or get in touch about coaching directly. You don't need to do one before the other."),
-            e('a', { className: 'btn amber', href: GAP, style: { marginTop: 24 } }, 'Take the free GAP Profile ', arrow()),
-            e('p', null, 'Or ', e('a', { href: CAL }, 'book a 60-minute session'), ' or ', e('a', { href: MAIL + '?subject=Enquiry%20about%20a%201%3A1%20session' }, 'email me about coaching'), '. One session is £125. Six are £600. ', e('a', { href: '#/', onClick: toSessions }, 'See how it works'), '.')
-          )
-        );
-      }
-
-      function ParentsPage(props) {
-        var arrow = function () { return e('span', { 'aria-hidden': 'true' }, '→'); };
-        var eyebrow = function (t) { return e('div', { className: 'eyebrow' }, t); };
-        return e('main', { className: 'jm' },
-
-          /* ── Hero ── */
-          e('section', { className: 'wrap page-head' },
-            eyebrow('For parents and supporters'),
-            e('h1', null, 'If someone you care about seems stuck, ', e('em', null, 'you’re probably not imagining it.'))
-          ),
-
-          /* ── What may be going on ── */
-          e('section', { className: 'about section' },
-            e('div', { className: 'wrap split' },
-              e('div', null,
-                eyebrow('What may be going on'),
-                e('h2', null, 'The block usually isn’t about motivation.')
-              ),
-              e('div', null,
-                e('p', { className: 'big' }, 'Telling them to “just get on with it” probably isn’t working. They’re probably listening.'),
-                e('p', null, "Someone can be capable and still find it difficult to take their next step. There may be several reasons, including circumstances that a short questionnaire cannot capture. Start by listening to how they describe it."),
-                e('p', null, "The GAP Profile is a free self-reflection tool with no sign-up. It can give them a starting point for thinking about their situation. It is not a diagnosis or a scientifically validated assessment. Let them choose whether to take it and whether to share their results. If you would like to discuss whether coaching could help, you can email me.")
-              )
-            )
-          ),
-
-          /* ── Closing ── */
-          e('section', { className: 'dark closing' },
-            e('h2', null, 'Want to find out if ', e('em', null, 'coaching would help?')),
-            e('p', { style: { maxWidth: 520 } }, 'Email me and we can talk about whether coaching might suit them. If they’d like somewhere to begin on their own, the GAP Profile is free and takes about five minutes. Whether they take it, and whether they share the results, is up to them.'),
-            e('a', { className: 'btn amber', href: 'mailto:hello@joemarkland.co.uk?subject=Coaching%20enquiry%20from%20a%20parent%20or%20supporter', style: { marginTop: 24 } }, 'Email me about coaching ', arrow()),
-            e('p', null, 'Or pass on the free ', e('a', { href: GAP }, 'GAP Profile'), ' for them to try.')
-          )
-        );
-      }
-
       var startHash = window.location.hash;
 
       function App() {
-        var pageState = useState(function () {
-          var h = window.location.hash.slice(1);
-          if (h === '/about') return 'about';
-          if (h === '/parents') return 'parents';
-          return 'home';
-        });
-        var page = pageState[0];
+        var pageState = useState('home');
         var setPage = pageState[1];
 
         useEffect(function () {
-          var handler = function () {
-            var h = window.location.hash.slice(1);
-            if (h === '/about') setPage('about');
-            else if (h === '/parents') setPage('parents');
-            else setPage('home');
-          };
-          window.addEventListener('hashchange', handler);
-          return function () {
-            window.removeEventListener('hashchange', handler);
-          };
-        }, []);
-
-        useEffect(function () {
-          var nextHash = page === 'about' ? '#/about' : page === 'parents' ? '#/parents' : '#/';
-          if (window.location.hash !== nextHash) {
-            window.location.hash = nextHash;
-          }
-          document.title = (page === 'about' ? 'About | ' : page === 'parents' ? 'For parents | ' : '') + 'Joe Markland | Career Coach in Lancashire and online';
-        }, [page]);
-
-        useEffect(function () {
-          if (startHash !== '#/questions') return;
+          var id = startHash === '#/questions' ? 'questions' : startHash === '#sessions' ? 'sessions' : startHash === '#approach' ? 'approach' : '';
+          if (!id) return;
           setTimeout(function () {
-            var el = document.getElementById('questions');
+            var el = document.getElementById(id);
             if (el) el.scrollIntoView();
           }, 80);
         }, []);
@@ -859,11 +712,11 @@
           }
         },
           e('a', { className: 'skip-link', href: '#/', onClick: function (ev) { ev.preventDefault(); var m = document.getElementById('main'); if (m) m.focus(); } }, 'Skip to content'),
-          e(Nav, { page: page, setPage: setPage }),
+          e(Nav, { page: 'home', setPage: setPage }),
           e('div', { id: 'main', tabIndex: -1, style: { outline: 'none' } },
-            page === 'about' ? e(AboutPage, { setPage: setPage }) : page === 'parents' ? e(ParentsPage, { setPage: setPage }) : e(HomePage, { setPage: setPage })
+            e(HomePage, { setPage: setPage })
           ),
-          e(Footer, { setPage: setPage, wide: page === 'home' })
+          e(Footer, { setPage: setPage, wide: true })
         );
       }
 

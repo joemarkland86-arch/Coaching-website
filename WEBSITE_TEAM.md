@@ -107,7 +107,7 @@ Do not claim a branch has a hosted preview: the current workflow deploys main on
 ## Review checklist
 For documentation: verify paths, role boundaries, instructions and the final diff.
 For implementation:
-- Home, About and Parents: navigation, direct URL, refresh, back/forward.
+- Home, About, For parents, For dads and For university staff: navigation, direct URL, refresh, back/forward, and the old #/about and #/parents redirects.
 - Narrow mobile and desktop: readable text, no clipping or horizontal overflow.
 - Keyboard: visible focus, operable controls, sensible focus order.
 - FAQ: correct expanded state and hidden content behaviour.
